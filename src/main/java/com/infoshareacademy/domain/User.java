@@ -1,4 +1,4 @@
-package com.infoshareacademy.objects;
+package com.infoshareacademy.domain;
 
 public class User {
     static int userId;
