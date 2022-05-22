@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 ### Wino
 Wino/.idea/
 Wino/out/
 Wino/target/
 Wino/pom.xml
+=======
+### 
+>>>>>>> 77082caa13009929919e6071983ae64ad030328d
 
 ### Maven template
 target/
