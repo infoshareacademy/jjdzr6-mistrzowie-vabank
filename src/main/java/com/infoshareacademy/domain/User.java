@@ -1,67 +1,35 @@
 package com.infoshareacademy.domain;
 
 public class User {
-    static int userId;
-    static String userLogin;
-    static String userPassword;
-    static String userName;
-    static String userSurname;
-    static String userEmail;
-    static int userPhoneNumber;
+    private int userId;
+    private String userLogin;
+    private String userPassword;
+    private String userName;
+    private String userSurname;
+    private String userEmail;
+    private int userPhoneNumber;
 
-    public static int getUserId() {
-        return userId;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userLogin='" + userLogin + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userSurname='" + userSurname + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPhoneNumber=" + userPhoneNumber +
+                '}';
     }
 
-    public void setUserId(int userId) {
-        User.userId = userId;
-    }
+    public User(int userId, String userLogin, String userPassword, String userName, String userSurname, String userEmail, int userPhoneNumber) {
+        this.userId = userId;
+        this.userLogin = userLogin;
+        this.userPassword = userPassword;
+        this.userName = userName;
+        this.userSurname = userSurname;
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
 
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        User.userLogin = userLogin;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        User.userPassword = userPassword;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        User.userName = userName;
-    }
-
-    public String getUserSurname() {
-        return userSurname;
-    }
-
-    public void setUserSurname(String userSurname) {
-        User.userSurname = userSurname;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        User.userEmail = userEmail;
-    }
-
-    public int getUserPhoneNumber() {
-        return userPhoneNumber;
-    }
-
-    public void setUserPhoneNumber(int userPhoneNumber) {
-        User.userPhoneNumber = userPhoneNumber;
     }
 }

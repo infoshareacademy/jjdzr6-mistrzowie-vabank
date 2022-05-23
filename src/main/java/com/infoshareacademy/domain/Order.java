@@ -1,31 +1,23 @@
 package com.infoshareacademy.domain;
 
-public class Order {
-    int orderId;
-    int vineId = Vine.getVineId();
-    int userId = User.getUserId();
+public class Order{
+    private int orderId;
+    private Vine vineId;
+    private User userId;
 
-    public int getOrderId() {
-        return orderId;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", vineId=" + vineId +
+                ", userId=" + userId +
+                '}';
     }
 
-    public void setOrderId(int orderId) {
+    public Order(int orderId, Vine vineId, User userId) {
         this.orderId = orderId;
-    }
-
-    public int getVineId() {
-        return vineId;
-    }
-
-    public void setVineId(int vineId) {
         this.vineId = vineId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
         this.userId = userId;
+
     }
 }
