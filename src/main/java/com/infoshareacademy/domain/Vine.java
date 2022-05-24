@@ -3,9 +3,9 @@ package com.infoshareacademy.domain;
 public class Vine {
     private int vineId;
     private String vineName;
-    private int vineVintage;
+    private String vineFlavour;
     private String vineType;
-    private String vineDivision;
+    private int vineDivision;
     private String vineOrigin;
     private int vinePrice;
 
@@ -14,7 +14,7 @@ public class Vine {
         return "Vine{" +
                 "vineId=" + vineId +
                 ", vineName='" + vineName + '\'' +
-                ", vineVintage=" + vineVintage +
+                ", vineVintage=" + vineFlavour +
                 ", vineType='" + vineType + '\'' +
                 ", vineDivision='" + vineDivision + '\'' +
                 ", vineOrigin='" + vineOrigin + '\'' +
@@ -22,10 +22,10 @@ public class Vine {
                 '}';
     }
 
-    public Vine(int vineId, String vineName, int vineVintage, String vineType, String vineDivision, String vineOrigin, int vinePrice) {
+    public Vine(int vineId, String vineName, String vineFlavour, String vineType, int vineDivision, String vineOrigin, int vinePrice) {
         this.vineId = vineId;
         this.vineName = vineName;
-        this.vineVintage = vineVintage;
+        this.vineFlavour = vineFlavour;
         this.vineType = vineType;
         this.vineDivision = vineDivision;
         this.vineOrigin = vineOrigin;
