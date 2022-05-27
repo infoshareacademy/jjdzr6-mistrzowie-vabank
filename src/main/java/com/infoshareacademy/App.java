@@ -1,12 +1,6 @@
 package com.infoshareacademy;
 
-import com.google.gson.Gson;
-import com.infoshareacademy.domain.Order;
-import com.infoshareacademy.domain.User;
-import com.infoshareacademy.domain.Vine;
-
 import java.io.IOException;
-import java.util.Scanner;
 
 import static com.infoshareacademy.menu.Menu.menu;
 

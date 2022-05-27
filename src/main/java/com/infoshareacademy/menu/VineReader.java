@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class VineReader {
     public void loadVineAsResource() throws IOException {
 
-        try (InputStream inputStream = getClass().getResourceAsStream("/Vine.txt");
+        try (InputStream inputStream = getClass().getResourceAsStream("/Wine.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String contents = reader.lines()
                     .collect(Collectors.joining(System.lineSeparator()));

@@ -2,21 +2,21 @@ package com.infoshareacademy.domain;
 
 public class Order{
     private int orderId;
-    private Vine vineId;
+    private Wine wineId;
     private User userId;
 
     @Override
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", vineId=" + vineId +
+                ", vineId=" + wineId +
                 ", userId=" + userId +
                 '}';
     }
 
-    public Order(int orderId, Vine vineId, User userId) {
+    public Order(int orderId, Wine wineId, User userId) {
         this.orderId = orderId;
-        this.vineId = vineId;
+        this.wineId = wineId;
         this.userId = userId;
 
     }
