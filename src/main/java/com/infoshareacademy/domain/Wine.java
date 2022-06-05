@@ -32,4 +32,60 @@ public class Wine {
         this.winePrice = winePrice;
 
     }
+
+    public int getWineId() {
+        return wineId;
+    }
+
+    public void setWineId(int wineId) {
+        this.wineId = wineId;
+    }
+
+    public String getWineName() {
+        return wineName;
+    }
+
+    public void setWineName(String wineName) {
+        this.wineName = wineName;
+    }
+
+    public String getWineFlavour() {
+        return wineFlavour;
+    }
+
+    public void setWineFlavour(String wineFlavour) {
+        this.wineFlavour = wineFlavour;
+    }
+
+    public String getWineType() {
+        return wineType;
+    }
+
+    public void setWineType(String wineType) {
+        this.wineType = wineType;
+    }
+
+    public int getWineDivision() {
+        return wineDivision;
+    }
+
+    public void setWineDivision(int wineDivision) {
+        this.wineDivision = wineDivision;
+    }
+
+    public String getWineOrigin() {
+        return wineOrigin;
+    }
+
+    public void setWineOrigin(String wineOrigin) {
+        this.wineOrigin = wineOrigin;
+    }
+
+    public int getWinePrice() {
+        return winePrice;
+    }
+
+    public void setWinePrice(int winePrice) {
+        this.winePrice = winePrice;
+    }
 }

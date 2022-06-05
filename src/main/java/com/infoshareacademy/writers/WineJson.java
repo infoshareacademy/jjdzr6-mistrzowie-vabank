@@ -1,7 +1,6 @@
 package com.infoshareacademy.writers;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import com.infoshareacademy.domain.Wine;
 
@@ -14,11 +13,15 @@ public class WineJson {
     public static void ReadingWineToJson() throws IOException {
         Gson gson = new Gson();
         JsonReader reader = new JsonReader(new FileReader("src/main/resources/Wine.json"));
-        Wine[] wine = gson.fromJson(reader, Wine[].class);
-        for (Wine wine1: wine) {
-            System.out.println(wine1);
+        Wine[] wines = gson.fromJson(reader, Wine[].class);
+        for (Wine wine: wines) {
+           // System.out.println(wine);
+            if (wine.getWineId()==1){
+                System.out.println(wine);
+                break;
+            }
         }
 
-
     }
+
 }
