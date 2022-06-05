@@ -1,4 +1,4 @@
-package com.infoshareacademy.writers;
+/*package com.infoshareacademy.writers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,4 +35,4 @@ public class OrderJson {
 
         writer.close();
     }
-}
+}*/

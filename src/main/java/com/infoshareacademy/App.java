@@ -1,8 +1,11 @@
 package com.infoshareacademy;
 
+import com.infoshareacademy.writers.WineJson;
+
 import java.io.IOException;
 
 import static com.infoshareacademy.menu.Menu.menu;
+
 
 /**
  * Hello world!
@@ -11,8 +14,8 @@ import static com.infoshareacademy.menu.Menu.menu;
 public class App 
 {
     public static void main( String[] args ) throws IOException {
-        menu();
-        //VineJson.WritingVineToJson();
+        //menu();
+        WineJson.ReadingWineToJson();
         //UserJson.WritingUserToJson();
         //OrderJson.WritingOrderToJson();
 
