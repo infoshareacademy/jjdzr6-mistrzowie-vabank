@@ -1,12 +1,12 @@
 package com.infoshareacademy;
 
 import com.infoshareacademy.domain.Wine;
+import com.infoshareacademy.menu.Menu;
 import com.infoshareacademy.service.WineService;
 import com.infoshareacademy.writers.WineJson;
 
 import java.io.IOException;
 
-import static com.infoshareacademy.menu.Menu.menu;
 
 
 /**
@@ -16,7 +16,8 @@ import static com.infoshareacademy.menu.Menu.menu;
 public class App 
 {
     public static void main( String[] args ) throws Exception {
-        menu();
+        Menu menu = new Menu();
+        menu.menu();
        // WineJson.ReadingWineToJson();
      /*   WineService wineService = new WineService();
         wineService.ReadingWineToJson();

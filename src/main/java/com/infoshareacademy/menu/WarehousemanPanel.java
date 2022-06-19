@@ -5,13 +5,12 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.infoshareacademy.menu.ClientPanel.fileReader;
 import static com.infoshareacademy.menu.Menu.scanner;
 
 public class WarehousemanPanel {
-    static String[] warehousemanOptionArray = {"1. Lista win", "2. Lista zamówień", "3. Produkty na wyczerpaniu", "4. Powrót"};
-
-    static void showCarehousemanPanel() throws IOException {
+    private String[] warehousemanOptionArray = {"1. Lista win", "2. Lista zamówień", "3. Produkty na wyczerpaniu", "4. Powrót"};
+    ClientPanel clientPanel = new ClientPanel();
+    void showCarehousemanPanel() throws IOException {
         int caseNumber = 0;
         while(caseNumber != 4){
             showWarehousemanOption();
@@ -31,14 +30,14 @@ public class WarehousemanPanel {
             }
         }
     }
-    static void showWarehousemanOption(){
+    void showWarehousemanOption(){
         System.out.println("Jesteś na profilu magazyniera");
     }
 
-    static void showVineList() throws IOException {
+    void showVineList() throws IOException {
         int nr = 0;
         while(nr != 1){
-            fileReader();
+            clientPanel.fileReader();
             System.out.println("1. Powrót");
             scanner = new Scanner(System.in);
             try{
@@ -49,7 +48,7 @@ public class WarehousemanPanel {
         }
     }
 
-    static void showOrders(){
+    void showOrders(){
         int nr = 0;
         while (nr != 1){
             System.out.println("Zamówienia klientów: ");
@@ -63,7 +62,7 @@ public class WarehousemanPanel {
         }
     }
 
-    static void showProductsRunningOut(){
+    void showProductsRunningOut(){
         int nr = 0;
         while(nr != 1){
             System.out.println("Produkty bliskie wyczerpaniu: ");

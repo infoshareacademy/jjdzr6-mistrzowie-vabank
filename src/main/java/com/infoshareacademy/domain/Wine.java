@@ -1,5 +1,7 @@
 package com.infoshareacademy.domain;
 
+import java.math.BigDecimal;
+
 public class Wine {
     private int wineId;
     private String wineName;
@@ -7,22 +9,8 @@ public class Wine {
     private String wineType;
     private int wineDivision;
     private String wineOrigin;
-    private int winePrice;
-
-    @Override
-    public String toString() {
-        return "Vine{" +
-                "vineId=" + wineId +
-                ", vineName='" + wineName + '\'' +
-                ", vineVintage=" + wineFlavour +
-                ", vineType='" + wineType + '\'' +
-                ", vineDivision='" + wineDivision + '\'' +
-                ", vineOrigin='" + wineOrigin + '\'' +
-                ", vinePrice=" + winePrice +
-                '}';
-    }
-
-    public Wine(int WineId, String wineName, String wineFlavour, String wineType, int wineDivision, String wineOrigin, int winePrice) {
+    private BigDecimal winePrice;
+    public Wine(int WineId, String wineName, String wineFlavour, String wineType, int wineDivision, String wineOrigin, BigDecimal winePrice) {
         this.wineId = WineId;
         this.wineName = wineName;
         this.wineFlavour = wineFlavour;
@@ -81,11 +69,24 @@ public class Wine {
         this.wineOrigin = wineOrigin;
     }
 
-    public int getWinePrice() {
+    public BigDecimal getWinePrice() {
         return winePrice;
     }
 
-    public void setWinePrice(int winePrice) {
+    public void setWinePrice(BigDecimal winePrice) {
         this.winePrice = winePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Vine{" +
+                "vineId=" + wineId +
+                ", vineName='" + wineName + '\'' +
+                ", vineVintage=" + wineFlavour +
+                ", vineType='" + wineType + '\'' +
+                ", vineDivision='" + wineDivision + '\'' +
+                ", vineOrigin='" + wineOrigin + '\'' +
+                ", vinePrice=" + winePrice +
+                '}';
     }
 }

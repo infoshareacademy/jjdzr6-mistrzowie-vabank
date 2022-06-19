@@ -10,7 +10,7 @@ import static com.infoshareacademy.menu.Menu.scanner;
 public class ClientPanel {
     static String[] clientOptionArray = {"1. Lista win", "2. Koszyk", "3. Powrót"};
 
-    static void showClientPanel() throws IOException {
+    void showClientPanel() throws IOException {
         int caseNumber = 0;
         while(caseNumber != 3){
             showClientOption();
@@ -29,11 +29,11 @@ public class ClientPanel {
             }
         }
     }
-    static void showClientOption(){
+    void showClientOption(){
         System.out.println("Jesteś na profilu klienta");
     }
 
-    static void showVineList() throws IOException {
+    void showVineList() throws IOException {
         int nr = 0;
         while(nr != 1){
             fileReader();
@@ -47,7 +47,7 @@ public class ClientPanel {
         }
     }
 
-    static void showShoppingCart(){
+    void showShoppingCart(){
         int nr = 0;
         while(nr != 1){
             System.out.println("Twoje produkty: ");
@@ -60,7 +60,7 @@ public class ClientPanel {
             }
         }
     }
-    static void fileReader() throws IOException {
+    void fileReader() throws IOException {
         VineReader resourceLoader = new VineReader();
         resourceLoader.loadVineAsResource();
     }

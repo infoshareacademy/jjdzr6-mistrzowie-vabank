@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 public class WineJson {
 
-    public static void ReadingWineToJson() throws IOException {
+    public void ReadingWineToJson() throws IOException {
         Gson gson = new Gson();
         JsonReader reader = new JsonReader(new FileReader("src/main/resources/Wine.json"));
         Wine[] wines = gson.fromJson(reader, Wine[].class);
