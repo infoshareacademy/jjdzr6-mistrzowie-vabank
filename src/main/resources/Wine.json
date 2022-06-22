@@ -1,0 +1,110 @@
+[
+  {
+    "wineId": 0,
+    "wineName": "Château Rieussec Premiere Cru Classe Sauternes",
+    "wineFlavour": "Słodkie",
+    "wineType": "Białe",
+    "wineDivision": 2014,
+    "wineOrigin": "Francja",
+    "winePrice": 560
+  },
+  {
+    "wineId": 1,
+    "wineName": "Hétszőlő Tokaj Sweet Szamorodni Domaine Imperial",
+    "wineFlavour": "Słodkie",
+    "wineType": "Białe",
+    "wineDivision": 2017,
+    "wineOrigin": "Węgry",
+    "winePrice": 100
+  },
+  {
+    "wineId": 2,
+    "wineName": "Château Lafite Rothschild Premiere Cru Classe Pauillac",
+    "wineFlavour": "Wytrwane",
+    "wineType": "Czerwone",
+    "wineDivision": 2010,
+    "wineOrigin": "Francja",
+    "winePrice": 8550
+  },
+  {
+    "wineId": 3,
+    "wineName": "Chateau Mouton Rothschild 1-er Cru Classe",
+    "wineFlavour": "Wytrawne",
+    "wineType": "Czerwone",
+    "wineDivision": 2011,
+    "wineOrigin": "Francja",
+    "winePrice": 4650
+  },
+  {
+    "wineId": 4,
+    "wineName": "Catena Zapata Adrianna Vineyard „River Stones Malbec",
+    "wineFlavour": "Wytrawne",
+    "wineType": "Czerwone",
+    "wineDivision": 2018,
+    "wineOrigin": "Argentyna",
+    "winePrice": 699
+  },
+  {
+    "wineId": 5,
+    "wineName": "Muscaris Kojder",
+    "wineFlavour": "Półsłodkie",
+    "wineType": "Białe",
+    "wineDivision": 2020,
+    "wineOrigin": "Polska",
+    "winePrice": 89
+  },
+  {
+    "wineId": 6,
+    "wineName": "Araldica Moscato d\u0027Asti",
+    "wineFlavour": "Półsłodkie",
+    "wineType": "Musujące",
+    "wineDivision": 2020,
+    "wineOrigin": "Włochy",
+    "winePrice": 55
+  },
+  {
+    "wineId": 7,
+    "wineName": "Tamada Kindzmarauli",
+    "wineFlavour": "Półsłodkie",
+    "wineType": "Czerwone",
+    "wineDivision": 2019,
+    "wineOrigin": "Gruzja",
+    "winePrice": 49
+  },
+  {
+    "wineId": 8,
+    "wineName": "Dominio de Pingus Pingus Ribera Del Duero DO",
+    "wineFlavour": "Wytrawne",
+    "wineType": "Czerwone",
+    "wineDivision": 2018,
+    "wineOrigin": "Hiszpania",
+    "winePrice": 5549
+  },
+  {
+    "wineId": 9,
+    "wineName": "Bestheim Pinot Gris Classic Alsace",
+    "wineFlavour": "Półwytrawne",
+    "wineType": "Białe",
+    "wineDivision": 2019,
+    "wineOrigin": "Francja",
+    "winePrice": 65
+  },
+  {
+    "wineId": 10,
+    "wineName": "Carmenere Gran Reserva Vina Falernia",
+    "wineFlavour": "Półwytrawne",
+    "wineType": "Czerwone",
+    "wineDivision": 2018,
+    "wineOrigin": "Chile",
+    "winePrice": 79
+  },
+  {
+    "wineId": 11,
+    "wineName": "Soley Winnica Słońce i Wiatr",
+    "wineFlavour": "Półwytrawne",
+    "wineType": "Białe",
+    "wineDivision": 2020,
+    "wineOrigin": "Polska",
+    "winePrice": 79
+  }
+]
