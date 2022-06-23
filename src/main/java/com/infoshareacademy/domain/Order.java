@@ -35,8 +35,9 @@ public class Order{
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", vineId=" + wineId +
+                ", wineId=" + wineId +
                 ", userId=" + userId +
+                ", orderDate=" + orderDate +
                 '}';
     }
 }
