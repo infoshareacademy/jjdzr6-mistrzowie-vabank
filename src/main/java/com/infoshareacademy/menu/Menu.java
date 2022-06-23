@@ -9,7 +9,7 @@ public class Menu{
     private ClientPanel clientPanel = new ClientPanel();
     static Scanner scanner = new Scanner(System.in);
     static String[] menuOptionArray = {"1. Klient", "2. Magazynier", "3. Wyjdź z hurtowni"};
-    WarehousemanPanel warehousemanPanel = new WarehousemanPanel();
+    private WarehousemanPanel warehousemanPanel = new WarehousemanPanel();
     public void menu() throws IOException {
         int caseNumber = 0;
         while (caseNumber != 3){

@@ -19,7 +19,7 @@ public class ClientPanel {
                 System.out.println(Arrays.toString(clientOptionArray));
                 caseNumber = scanner.nextInt();
                 switch(caseNumber){
-                    case 1 -> showVineList();
+                    case 1 -> showWineList();
                     case 2 -> showShoppingCart();
                     case 3 -> System.out.println("Powrót");
                     default -> System.out.println("\nWybierz właściwą opcję!\n");
@@ -33,7 +33,7 @@ public class ClientPanel {
         System.out.println("Jesteś na profilu klienta");
     }
 
-    void showVineList() throws IOException {
+    void showWineList() throws IOException {
         int nr = 0;
         while(nr != 1){
             fileReader();

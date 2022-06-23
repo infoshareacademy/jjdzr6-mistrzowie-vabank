@@ -19,7 +19,7 @@ public class WarehousemanPanel {
                 System.out.println(Arrays.toString(warehousemanOptionArray));
                 caseNumber = scanner.nextInt();
                 switch (caseNumber) {
-                    case 1 -> showVineList();
+                    case 1 -> showWineList();
                     case 2 -> showOrders();
                     case 3 -> showProductsRunningOut();
                     case 4 -> System.out.println("Powrót");
@@ -34,7 +34,7 @@ public class WarehousemanPanel {
         System.out.println("Jesteś na profilu magazyniera");
     }
 
-    void showVineList() throws IOException {
+    void showWineList() throws IOException {
         int nr = 0;
         while(nr != 1){
             clientPanel.fileReader();
