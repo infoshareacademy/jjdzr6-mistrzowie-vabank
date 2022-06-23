@@ -9,7 +9,7 @@ import static com.infoshareacademy.menu.Menu.scanner;
 
 public class WarehousemanPanel {
     private String[] warehousemanOptionArray = {"1. Lista win", "2. Lista zamówień", "3. Produkty na wyczerpaniu", "4. Powrót"};
-    ClientPanel clientPanel = new ClientPanel();
+    private ClientPanel clientPanel = new ClientPanel();
     void showCarehousemanPanel() throws IOException {
         int caseNumber = 0;
         while(caseNumber != 4){

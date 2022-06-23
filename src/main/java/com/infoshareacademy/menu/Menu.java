@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu{
-    ClientPanel clientPanel = new ClientPanel();
+    private ClientPanel clientPanel = new ClientPanel();
     static Scanner scanner = new Scanner(System.in);
     static String[] menuOptionArray = {"1. Klient", "2. Magazynier", "3. Wyjdź z hurtowni"};
     WarehousemanPanel warehousemanPanel = new WarehousemanPanel();

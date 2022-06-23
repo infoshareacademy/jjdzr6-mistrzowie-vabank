@@ -26,7 +26,6 @@ public class App
         Wine wine2 = wineService.getWineById(3);
         System.out.println(wine2);*/
 
-
         //UserJson.WritingUserToJson();
         //OrderJson.WritingOrderToJson();
 

@@ -61,8 +61,8 @@ public class ClientPanel {
         }
     }
     void fileReader() throws IOException {
-        VineReader resourceLoader = new VineReader();
-        resourceLoader.loadVineAsResource();
+        WineReader resourceLoader = new WineReader();
+        resourceLoader.loadWineAsResource();
     }
 
 }

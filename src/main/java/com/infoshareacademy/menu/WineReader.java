@@ -6,8 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-public class VineReader {
-    public void loadVineAsResource(){
+public class WineReader {
+    public void loadWineAsResource(){
 
         try (InputStream inputStream = getClass().getResourceAsStream("/Wine.txt");
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
