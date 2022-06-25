@@ -6,6 +6,8 @@ import com.infoshareacademy.domain.Wine;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WineByFlavour {
     private Wine[] wines;
@@ -17,26 +19,13 @@ public class WineByFlavour {
         wines = gson.fromJson(reader, Wine[].class);
     }
 
-    public Wine[] getWineByFlavour2(String flavour) {
-        int count = 0;
-        for (Wine wine : wines) {
-            // System.out.println(wine);
-            if (wine.getWineFlavour().equals(flavour)) {
-                wines[count++] = wine;
+    public List<Wine> getWineByFlavour(String flavour) {
+        List<Wine> wineList = new ArrayList<>();
+        for (Wine value : wines) {
+            if (value.getWineFlavour().toLowerCase().equals(flavour.toLowerCase())) {
+                wineList.add(value);
             }
         }
-        return wines;
-    }
-
-    public Wine[] getWineByFlavour(String flavour) {
-        Wine[] wines2 = new Wine[wines.length];
-        int count = 0;
-        for (int i = 0; i < wines.length; i++) {
-            // System.out.println(wine);
-            if (wines[i].getWineFlavour().toLowerCase().equals(flavour.toLowerCase())) {
-                    wines2[count++] = wines[i];
-            }
-        }
-        return wines2;
+        return wineList;
     }
 }

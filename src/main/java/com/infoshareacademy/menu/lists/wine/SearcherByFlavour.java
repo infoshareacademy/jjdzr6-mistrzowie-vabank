@@ -1,5 +1,6 @@
 package com.infoshareacademy.menu.lists.wine;
 
+import com.infoshareacademy.domain.Wine;
 import com.infoshareacademy.service.WineByFlavour;
 
 import java.io.IOException;
@@ -21,7 +22,11 @@ public class SearcherByFlavour {
             try {
                 nr = scanner.nextLine();
                 wineByFlavour.ReadingWineToJson();
-                System.out.println(Arrays.toString(wineByFlavour.getWineByFlavour(nr)));
+
+                for(Wine wine : wineByFlavour.getWineByFlavour(nr)){
+                    System.out.println(wine);
+                }
+
             } catch (InputMismatchException | IllegalArgumentException | IOException e) {
                 System.out.println("Podaj smak! Słodkie/Półsłodkie/Wytrawne/Półwytrawne");
             }
