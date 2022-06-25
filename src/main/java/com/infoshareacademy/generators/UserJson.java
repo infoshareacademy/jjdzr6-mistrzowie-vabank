@@ -1,4 +1,4 @@
-package com.infoshareacademy.writers;
+package com.infoshareacademy.generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

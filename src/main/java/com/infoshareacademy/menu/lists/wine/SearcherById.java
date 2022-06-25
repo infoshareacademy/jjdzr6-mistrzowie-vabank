@@ -1,4 +1,4 @@
-package com.infoshareacademy.wine;
+package com.infoshareacademy.menu.lists.wine;
 
 import com.infoshareacademy.domain.Wine;
 import com.infoshareacademy.service.WineById;

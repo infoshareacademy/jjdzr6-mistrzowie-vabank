@@ -1,6 +1,6 @@
 package com.infoshareacademy;
 
-import com.infoshareacademy.menu.Menu;
+import com.infoshareacademy.menu.collaborative.Menu;
 
 
 /**
@@ -11,22 +11,20 @@ public class App
 {
     public static void main( String[] args ) throws Exception {
         Menu menu = new Menu();
-        menu.menu();
-       // WineJson.ReadingWineToJson();
-     /*   WineService wineService = new WineService();
-        wineService.ReadingWineToJson();
-        Wine wine = wineService.getWineById(3);
-        System.out.println(wine.getWineName());
-        Wine wine2 = wineService.getWineById(3);
-        System.out.println(wine2);*/
-
-        //UserJson.WritingUserToJson();
-        //OrderJson.WritingOrderToJson();
+        menu.showMenu();
 
 
-        //System.out.println("Podaj Wina: Id, Nazwę, Smak, Typ, Rocznik, Pochodzenie, Cenę");
+        /**Json Generators
+        *OrderJson orderJson = new OrderJson();
+        *orderJson.WritingOrderToJson();
 
-        //System.out.println(v1);
+        *UserJson userJson = new UserJson();
+        *userJson.WritingUserToJson();
+
+        *VineJson vineJson = new VineJson();
+        *vineJson.WritingVineToJson();
+
+         */
     }
 }
 
