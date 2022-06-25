@@ -1,0 +1,38 @@
+[
+  {
+    "userId": 0,
+    "userLogin": "Janek",
+    "userPassword": "Password",
+    "userName": "Jan",
+    "userSurname": "Kowalski",
+    "userEmail": "jankowalski@yahoo.com",
+    "userPhoneNumber": "123456789"
+  },
+  {
+    "userId": 1,
+    "userLogin": "Matiu",
+    "userPassword": "Haslo",
+    "userName": "Mateusz",
+    "userSurname": "Jankowski",
+    "userEmail": "mateuszjankowski@yahoo.com",
+    "userPhoneNumber": "789456123"
+  },
+  {
+    "userId": 2,
+    "userLogin": "Casi",
+    "userPassword": "qwerty",
+    "userName": "Kasia",
+    "userSurname": "Solecka",
+    "userEmail": "kasiasolecka@yahoo.com",
+    "userPhoneNumber": "456789321"
+  },
+  {
+    "userId": 3,
+    "userLogin": "Marti",
+    "userPassword": "asdfgh",
+    "userName": "Martyna",
+    "userSurname": "Elska",
+    "userEmail": "martynaelska@yahoo.com",
+    "userPhoneNumber": "357891264"
+  }
+]
