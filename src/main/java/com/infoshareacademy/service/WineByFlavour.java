@@ -33,7 +33,7 @@ public class WineByFlavour {
         int count = 0;
         for (int i = 0; i < wines.length; i++) {
             // System.out.println(wine);
-            if (wines[i].getWineFlavour().equals(flavour)) {
+            if (wines[i].getWineFlavour().toLowerCase().equals(flavour.toLowerCase())) {
                     wines2[count++] = wines[i];
             }
         }
