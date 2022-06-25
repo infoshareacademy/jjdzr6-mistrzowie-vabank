@@ -1,12 +1,6 @@
 package com.infoshareacademy;
 
-import com.infoshareacademy.domain.Wine;
-import com.infoshareacademy.service.WineService;
-import com.infoshareacademy.writers.WineJson;
-
-import java.io.IOException;
-
-import static com.infoshareacademy.menu.Menu.menu;
+import com.infoshareacademy.menu.collaborative.Menu;
 
 
 /**
@@ -16,23 +10,21 @@ import static com.infoshareacademy.menu.Menu.menu;
 public class App 
 {
     public static void main( String[] args ) throws Exception {
-        menu();
-       // WineJson.ReadingWineToJson();
-     /*   WineService wineService = new WineService();
-        wineService.ReadingWineToJson();
-        Wine wine = wineService.getWineById(3);
-        System.out.println(wine.getWineName());
-        Wine wine2 = wineService.getWineById(3);
-        System.out.println(wine2);*/
+        Menu menu = new Menu();
+        menu.showMenu();
 
 
-        //UserJson.WritingUserToJson();
-        //OrderJson.WritingOrderToJson();
+        /**Json Generators
+        *OrderJson orderJson = new OrderJson();
+        *orderJson.WritingOrderToJson();
 
+        *UserJson userJson = new UserJson();
+        *userJson.WritingUserToJson();
 
-        //System.out.println("Podaj Wina: Id, Nazwę, Smak, Typ, Rocznik, Pochodzenie, Cenę");
+        *VineJson vineJson = new VineJson();
+        *vineJson.WritingVineToJson();
 
-        //System.out.println(v1);
+         */
     }
 }
 
