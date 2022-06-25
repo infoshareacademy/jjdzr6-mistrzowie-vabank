@@ -13,7 +13,7 @@ public class WineById {
 
     public void ReadingWineToJson() throws IOException {
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("/Users/miko/Desktop/jjdzr6-mistrzowie-vabank-JJDZR6MV-18/jjdzr6-mistrzowie-vabank-JJDZR6MV-18/src/main/resources/Wine.json"));
+        JsonReader reader = new JsonReader(new FileReader("src/main/resources/Wine.json"));
         wines = gson.fromJson(reader, Wine[].class);
     }
 
