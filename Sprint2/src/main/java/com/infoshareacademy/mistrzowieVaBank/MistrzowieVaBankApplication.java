@@ -1,4 +1,4 @@
-package com.infoshareacademy.MistrzowieVaBank;
+package com.infoshareacademy.mistrzowieVaBank;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
