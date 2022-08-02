@@ -1,4 +1,4 @@
-package com.infoshareacademy.menu.lists.wine;
+/*package com.infoshareacademy.menu.lists.wine;
 
 import com.infoshareacademy.domain.Wine;
 import com.infoshareacademy.service.WineById;
@@ -11,6 +11,7 @@ public class SearcherById {
     private WineById wineById = new WineById();
     static Scanner scanner = new Scanner(System.in);
     public void searchWineById(){
+        Scanner scanner = new Scanner(System.in);
         int nr = 0;
         while(nr != 1) {
             System.out.println("\nPodaj id wina: ");
@@ -26,4 +27,4 @@ public class SearcherById {
             }
         }
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.infoshareacademy.menu.lists.wine;
 import com.infoshareacademy.readers.WineJson;
 
@@ -32,3 +33,4 @@ public class WineList {
         }
     }
 }
+*/

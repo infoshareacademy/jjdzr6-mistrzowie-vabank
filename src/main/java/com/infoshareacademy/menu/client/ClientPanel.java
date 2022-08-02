@@ -1,6 +1,6 @@
 package com.infoshareacademy.menu.client;
 
-import com.infoshareacademy.menu.lists.wine.WineList;
+import com.infoshareacademy.service.WineService;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ public class ClientPanel {
     static Scanner scanner = new Scanner(System.in);
     private ClientOption clientOption = new ClientOption();
     private ShoppingCart shoppingCart = new ShoppingCart();
-    private WineList wineList = new WineList();
+    private WineService wineService = new WineService();
     public void showClientPanel() throws IOException {
         int caseNumber = 0;
         while(caseNumber != 1){
@@ -24,7 +24,7 @@ public class ClientPanel {
                 caseNumber = scanner.nextInt();
                 switch(caseNumber){
                     case 1 -> System.out.println("Powrót");
-                    case 2 -> wineList.showWineList();
+                    case 2 -> wineService.showWineList();
                     case 3 -> shoppingCart.showShoppingCart();
                     default -> System.out.println("\nWybierz właściwą opcję!\n");
                 }

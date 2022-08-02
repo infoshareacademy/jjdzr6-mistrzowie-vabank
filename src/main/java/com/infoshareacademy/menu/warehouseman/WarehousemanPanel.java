@@ -2,7 +2,7 @@ package com.infoshareacademy.menu.warehouseman;
 
 import com.infoshareacademy.menu.client.ClientPanel;
 import com.infoshareacademy.menu.lists.OrderList;
-import com.infoshareacademy.menu.lists.wine.WineList;
+import com.infoshareacademy.service.WineService;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ public class WarehousemanPanel {
     static Scanner scanner = new Scanner(System.in);
     private ClientPanel clientPanel = new ClientPanel();
     private WarehousemanOptioner warehousemanOptioner = new WarehousemanOptioner();
-    private WineList wineList = new WineList();
+    private WineService wineService = new WineService();
     private OrderList orderList = new OrderList();
     private RunnerOutProducts runnerOutProducts = new RunnerOutProducts();
     public void showWarehousemanPanel() throws IOException {
@@ -27,7 +27,7 @@ public class WarehousemanPanel {
                 caseNumber = scanner.nextInt();
                 switch (caseNumber) {
                     case 1 -> System.out.println("Powrót");
-                    case 2 -> wineList.showWineList();
+                    case 2 -> wineService.showWineList();
                     case 3 -> orderList.showOrders();
                     case 4 -> runnerOutProducts.showProductsRunningOut();
                     default -> System.out.println("\nWybierz właściwą opcję!\n");

@@ -1,19 +1,19 @@
-package com.infoshareacademy.menu.lists.wine;
+/*package com.infoshareacademy.menu.lists.wine;
 
 import com.infoshareacademy.domain.Wine;
-import com.infoshareacademy.service.WineByFlavour;
+import com.infoshareacademy.service.WineService;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class SearcherByFlavour {
-    static Scanner scanner = new Scanner(System.in);
-    private WineByFlavour wineByFlavour = new WineByFlavour();
+
+    private WineService wineByFlavour = new WineService();
 
     public void searchWineByFlavour() {
+        Scanner scanner = new Scanner(System.in);
         String nr = "";
         while (!Objects.equals(nr, "1")) {
             System.out.println("\nPodaj smak wina");
@@ -32,4 +32,4 @@ public class SearcherByFlavour {
             }
         }
     }
-}
+}*/
