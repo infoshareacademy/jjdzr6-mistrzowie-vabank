@@ -10,27 +10,26 @@ import java.util.*;
 
 public class WineService {
     private Wine[] wines;
-    //private Wine[] wines2;
-
+    Scanner scanner = new Scanner(System.in);
 
     public void showWineList() throws IOException {
-        Scanner scanner = new Scanner(System.in);
+       // Scanner scanner = new Scanner(System.in);
         int nr = 0;
-        while(nr != 1){
+        while (nr != 1) {
             ReadingWineToJson();
             System.out.println("1. Powrót");
             System.out.println("2. Wyszukiwanie win po ID");
             System.out.println("3. Wyszukiwanie win po smaku");
             scanner = new Scanner(System.in);
-            try{
+            try {
                 nr = scanner.nextInt();
-                switch(nr){
+                switch (nr) {
                     case 1 -> System.out.println("Powrót");
                     case 2 -> searchWineById();
                     case 3 -> searchWineByFlavour();
                     default -> System.out.println("\nWybierz właściwą opcję!\n");
                 }
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("\nPodaj liczbę całkowitą!\n");
             }
         }
@@ -42,15 +41,6 @@ public class WineService {
         wines = gson.fromJson(reader, Wine[].class);
     }
 
- /*   public void ReadingWineToJson() throws IOException {
-        Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new FileReader("src/main/resources/Wine.json"));
-        Wine[] wines = gson.fromJson(reader, Wine[].class);
-        for (Wine wine : wines) {
-            System.out.println(wine);
-        }
-    }
-*/
     public List<Wine> getWineByFlavour(String flavour) {
         List<Wine> wineList = new ArrayList<>();
         for (Wine value : wines) {
@@ -72,7 +62,7 @@ public class WineService {
     }
 
     public void searchWineByFlavour() {
-        Scanner scanner = new Scanner(System.in);
+     //   Scanner scanner = new Scanner(System.in);
         String nr = "";
         while (!Objects.equals(nr, "1")) {
             System.out.println("\nPodaj smak wina");
@@ -82,7 +72,7 @@ public class WineService {
                 nr = scanner.nextLine();
                 ReadingWineToJson();
 
-                for(Wine wine : getWineByFlavour(nr)){
+                for (Wine wine : getWineByFlavour(nr)) {
                     System.out.println(wine);
                 }
 
@@ -91,10 +81,11 @@ public class WineService {
             }
         }
     }
-    public void searchWineById(){
-        Scanner scanner = new Scanner(System.in);
+
+    public void searchWineById() {
+     //   Scanner scanner = new Scanner(System.in);
         int nr = 0;
-        while(nr != 1) {
+        while (nr != 1) {
             System.out.println("\nPodaj id wina: ");
             System.out.println("1. Powrót");
             try {
