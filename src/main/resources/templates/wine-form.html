@@ -21,7 +21,7 @@
   </div>
 </nav>
 <div class="container-md">
-  <form th:object="${wine}" th:action="@{TODO}" method="post">
+  <form th:object="${wine}" th:action="@{/wines/new}" method="post">
     <label th:for="name_input_id" th:text="'Name:'"></label>
     <br>
     <input type="text" id="name_input_id" th:field="*{name}">
