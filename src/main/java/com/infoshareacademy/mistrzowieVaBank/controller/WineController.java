@@ -1,6 +1,6 @@
 package com.infoshareacademy.mistrzowieVaBank.controller;
 
-import com.infoshareacademy.domain.Wine;
+import com.infoshareacademy.mistrzowieVaBank.domain.Wine;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineDto;
 import com.infoshareacademy.mistrzowieVaBank.service.WineService;
 import org.springframework.stereotype.Controller;
@@ -22,5 +22,11 @@ public class WineController {
         WineDto dto = new WineDto(wine.getWineName());
         model.addAttribute("wine", dto);
         return "wine";
+    }
+
+    @GetMapping("/wines/new")
+    public String getWineForm(Model model) {
+        model.addAttribute("wine", new WineDto(null));
+        return "wine-form";
     }
 }

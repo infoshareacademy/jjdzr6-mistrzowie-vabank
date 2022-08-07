@@ -2,7 +2,7 @@ package com.infoshareacademy.mistrzowieVaBank.service;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.infoshareacademy.domain.Wine;
+import com.infoshareacademy.mistrzowieVaBank.domain.Wine;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;

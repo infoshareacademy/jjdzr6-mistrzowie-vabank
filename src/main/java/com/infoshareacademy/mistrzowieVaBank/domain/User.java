@@ -1,4 +1,4 @@
-package com.infoshareacademy.domain;
+package com.infoshareacademy.mistrzowieVaBank.domain;
 
 public class User {
     private int userId;

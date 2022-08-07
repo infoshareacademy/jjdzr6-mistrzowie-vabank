@@ -1,10 +1,10 @@
-/*package com.infoshareacademy.generators;*/
+/*package com.infoshareacademy.mistrzowieVaBank.generators;*/
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshareacademy.domain.Order;
-import com.infoshareacademy.domain.User;
-import com.infoshareacademy.domain.Wine;
+import com.infoshareacademy.mistrzowieVaBank.domain.Order;
+import com.infoshareacademy.mistrzowieVaBank.domain.User;
+import com.infoshareacademy.mistrzowieVaBank.domain.Wine;
 
 import java.io.IOException;
 import java.io.Writer;

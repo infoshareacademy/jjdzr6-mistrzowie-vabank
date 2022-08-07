@@ -1,8 +1,8 @@
-package com.infoshareacademy.generators;
+package com.infoshareacademy.mistrzowieVaBank.generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.infoshareacademy.domain.User;
+import com.infoshareacademy.mistrzowieVaBank.domain.User;
 
 import java.io.IOException;
 import java.io.Writer;
