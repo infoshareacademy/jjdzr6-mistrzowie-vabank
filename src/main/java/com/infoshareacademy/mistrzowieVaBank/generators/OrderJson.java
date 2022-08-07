@@ -1,4 +1,4 @@
-package com.infoshareacademy.generators;
+/*package com.infoshareacademy.generators;*/
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class OrderJson {
+/*public class OrderJson {
     User user1 = new User(0, "Janek", "Password", "Jan", "Kowalski", "jankowalski@yahoo.com", "123456789");
     User user2 = new User(1, "Matiu", "Haslo", "Mateusz", "Jankowski", "mateuszjankowski@yahoo.com", "789456123");
     User user3 = new User(2, "Casi", "qwerty", "Kasia", "Solecka", "kasiasolecka@yahoo.com", "456789321");
@@ -61,4 +61,4 @@ public class OrderJson {
 
         writer.close();
     }
-}
+}*/
