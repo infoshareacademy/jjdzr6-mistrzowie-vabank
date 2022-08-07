@@ -20,6 +20,10 @@ public class Wine {
         this.winePrice = winePrice;
 
     }
+    @Deprecated
+    public Wine(String wineName) {
+        this.wineName = wineName;
+    }
 
     public int getWineId() {
         return wineId;

@@ -1,13 +1,15 @@
-package com.infoshareacademy.service;
+package com.infoshareacademy.mistrzowieVaBank.service;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.infoshareacademy.domain.Wine;
+import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+@Service
 public class WineService {
     private Wine[] wines;
     Scanner scanner = new Scanner(System.in);
@@ -97,5 +99,12 @@ public class WineService {
                 System.out.println("Podaj liczbę całkowitą!");
             }
         }
+    }
+
+
+    public Wine searchWine(){
+
+
+        return new Wine("Chianti");
     }
 }

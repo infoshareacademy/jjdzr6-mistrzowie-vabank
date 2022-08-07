@@ -1,4 +1,4 @@
-package com.infoshareacademy.service;
+package com.infoshareacademy.mistrzowieVaBank.service;
 
 import java.io.IOException;
 import java.util.Arrays;

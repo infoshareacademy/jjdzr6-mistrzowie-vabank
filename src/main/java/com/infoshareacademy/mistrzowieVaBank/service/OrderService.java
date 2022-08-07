@@ -1,4 +1,4 @@
-package com.infoshareacademy.service;
+package com.infoshareacademy.mistrzowieVaBank.service;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
