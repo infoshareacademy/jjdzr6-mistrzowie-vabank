@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Shopping Cart UI</title>
-    <link rel="stylesheet" href="../css/shoppingcart.css" >
+    <link rel="stylesheet" href="../static/css/shoppingcart.css" >
+    <link th:href="@{/css/shoppingcart.css}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
 </head>
 <body>
@@ -15,12 +16,12 @@
 
     <div class="Cart-Items">
         <div class="image-box">
-            <img src="../images/image.png" height="120px"/>
+            <img src="../static/images/image.png" height="120px" th:src="@{images/image.png}"/>
         </div>
         <div class="about">
             <h1 class="title">Chateau Rieussec Sauternes Grand Cru Classe</h1>
             <h3 class="subtitle">750ml</h3>
-            <img src="../images/image.png" height="30px"/>
+            <img src="../static/images/image.png" height="30px" th:src="@{images/image.png}"/>
         </div>
         <div class="counter">
             <div class="btn">+</div>
@@ -35,12 +36,12 @@
 
     <div class="Cart-Items pad">
         <div class="image-box">
-            <img src="../images/image2.png" height="120px"/>
+            <img src="../static/images/image2.png" height="120px" th:src="@{images/image2.png}"/>
         </div>
         <div class="about">
             <h1 class="title">Hétszőlő Tokaj Sweet Szamorodni Domaine Imperial</h1>
             <h3 class="subtitle">500ml</h3>
-            <img src="../images/image2.png" height="30px"/>
+            <img src="../static/images/image2.png" height="30px" th:src="@{images/image2.png}"/>
         </div>
         <div class="counter">
             <div class="btn">+</div>
