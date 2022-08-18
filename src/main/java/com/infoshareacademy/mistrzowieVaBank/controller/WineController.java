@@ -37,4 +37,9 @@ public class WineController {
         System.out.printf(dto.toString());
         return "wine";
     }
+
+    @GetMapping("/product")
+    public String getProduct(){
+        return "product-form";
+    }
 }
