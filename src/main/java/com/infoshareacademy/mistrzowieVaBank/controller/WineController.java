@@ -26,6 +26,15 @@ public class WineController {
         return "wine";
     }
 
+    @GetMapping("/products/{flavour}")
+    public String getWineByFlavour(@PathVariable String flavour, Model model){
+        System.out.println("Test");
+        Wine wine = wineService.searchWineByFlavour(flavour);
+        WineDto dto = new WineDto(wine.getWineFlavour());
+        model.addAttribute("wine", dto);
+        return "productlist";
+    }
+
     @GetMapping("/wines/new")
     public String getWineForm(Model model) {
         model.addAttribute("wine", new WineDto(null));
