@@ -2,6 +2,7 @@ package com.infoshareacademy.mistrzowieVaBank.controller;
 
 import com.infoshareacademy.mistrzowieVaBank.domain.Wine;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineDto;
+import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.WineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
+
 @Controller
 public class WineController {
     private final WineService wineService;
+    private final WineRepository wineJson;
 
-    public WineController(WineService wineService) {
+    public WineController(WineService wineService, WineRepository wineJson) {
         this.wineService = wineService;
+        this.wineJson = wineJson;
     }
 
     @GetMapping("/wines/{id}")
@@ -50,5 +55,11 @@ public class WineController {
     @GetMapping("/product")
     public String getProduct(){
         return "product-form";
+    }
+
+    @GetMapping("/winelist")
+    public String getWinesJSON(Model model) throws IOException {
+        model.addAttribute("winesjson", wineJson.ReadingWineToJson());
+        return "productlist";
     }
 }
