@@ -2,7 +2,7 @@ package com.infoshareacademy.mistrzowieVaBank.dto;
 
 public class OrderDto {
     private Integer id;
-    private String bookTitle;
+    private String Title;
     private String comment;
     private Double price;
 
@@ -15,11 +15,11 @@ public class OrderDto {
     }
 
     public String getBookTitle() {
-        return bookTitle;
+        return Title;
     }
 
     public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+        this.Title = bookTitle;
     }
 
     public String getComment() {

@@ -41,7 +41,7 @@ public class OrderService {
         OrderDto dto = new OrderDto();
         dto.setId(order.getId());
         dto.setComment(order.getComment());
-        dto.setBookTitle(order.getBookTitle());
+        dto.setBookTitle(order.getTitle());
         dto.setPrice(order.getPrice());
         return dto;
     }

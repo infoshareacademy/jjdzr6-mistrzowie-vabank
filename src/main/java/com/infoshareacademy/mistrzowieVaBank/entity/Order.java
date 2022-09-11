@@ -13,7 +13,7 @@ public class Order {
     @Id
     @GeneratedValue
     private Integer id;
-    private String bookTitle;
+    private String Title;
     private String comment;
     private Double price;
     @Column(nullable = false)
@@ -27,28 +27,20 @@ public class Order {
         this.id = id;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public void setTitle(String title) {
+        this.Title = title;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public String getUsername() {
