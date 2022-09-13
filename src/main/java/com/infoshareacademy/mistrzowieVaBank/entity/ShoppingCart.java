@@ -5,7 +5,7 @@ import java.util.List;
 public class ShoppingCart {
 
     private Long id;
-    private List<Order> orderList;
+    private List<Wine> wineList;
     private double orderValue;
     private int quantity;
     private User user;
@@ -20,7 +20,7 @@ public class ShoppingCart {
 // czy koszyk juz istnieje / jest aktywny? boolean
     //rejestracja lub bez / adres z konta lub z palca
     //dobieranie pomimo wypelnienia koszyka
-    //dynamiczne przeliczanie cenw koszyku
+    //dynamiczne przeliczanie cen w koszyku
     // po kliknieciu add to cart dodajemy do koszyka - tworzy sie wpis do db z nowym koszykiem
     //mozna usunac koszyk wtedy usuwamy go z bazy
     //user bez rejestracji musi byc nullem
