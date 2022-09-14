@@ -25,5 +25,6 @@ public class ShoppingCart {
     //mozna usunac koszyk wtedy usuwamy go z bazy
     //user bez rejestracji musi byc nullem
     //walidacja po stronie koszyka
-
+    //builder do koszyka
+    //solid / testy
 }
