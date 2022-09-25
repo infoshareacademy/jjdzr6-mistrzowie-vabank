@@ -31,35 +31,4 @@ public class WineController {
         return "wine";
     }
 
-    @GetMapping("/products/{flavour}")
-    public String getWineByFlavour(@PathVariable String flavour, Model model){
-        System.out.println("Test");
-        Wine wine = wineService.searchWineByFlavour(flavour);
-        WineDto dto = new WineDto(wine.getWineFlavour());
-        model.addAttribute("wine", dto);
-        return "productlist";
-    }
-
-    @GetMapping("/wines/new")
-    public String getWineForm(Model model) {
-        model.addAttribute("wine", new WineDto(null));
-        return "wine-form";
-    }
-
-    @PostMapping("/wines/new")
-    public String sendWine(@ModelAttribute("wine") WineDto dto) {
-        System.out.printf(dto.toString());
-        return "wine";
-    }
-
-    @GetMapping("/product")
-    public String getProduct(){
-        return "product-form";
-    }
-
-    @GetMapping("/winelist")
-    public String getWinesJSON(Model model) throws IOException {
-        model.addAttribute("winesjson", wineJson.ReadingWineToJson());
-        return "productlist";
-    }
 }

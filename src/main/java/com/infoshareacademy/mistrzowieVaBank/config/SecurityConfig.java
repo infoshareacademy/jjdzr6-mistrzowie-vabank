@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String HOME_PAGE = "/";
-    private static final String DASHBOARD_PAGE = "/dashboard";
     private static final String SIGN_IN_PAGE = "/sign-in";
     private static final String SIGN_IN_API = "/api/sign-in";
     private static final String SIGN_OUT_API = "/api/sign-out";
@@ -28,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage(SIGN_IN_PAGE)
                 .loginProcessingUrl(SIGN_IN_API)
-                .defaultSuccessUrl(DASHBOARD_PAGE, true)
+                .defaultSuccessUrl(HOME_PAGE, true)
                 .failureUrl(SIGN_IN_PAGE + "?error")
                 .and()
                 .logout()
