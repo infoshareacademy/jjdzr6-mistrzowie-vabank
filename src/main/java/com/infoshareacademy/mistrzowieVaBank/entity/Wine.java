@@ -2,6 +2,7 @@ package com.infoshareacademy.mistrzowieVaBank.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "wine")
@@ -9,7 +10,7 @@ public class Wine {
 
     @Id
     @GeneratedValue
-    private int wineId;
+    private Long id;
     @Column(unique = true)
     private String name;
     private String flavour;
@@ -19,12 +20,35 @@ public class Wine {
     private BigDecimal price;
     private int quantity;
 
-    public int getWineId() {
-        return wineId;
+    @Lob
+    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
+    private byte[] image;
+
+    @Column(name = "Create_Date", nullable = false)
+    private LocalDate createDate;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setWineId(int wineId) {
-        this.wineId = wineId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
     public String getName() {

@@ -1,41 +1,41 @@
-package com.infoshareacademy.mistrzowieVaBank.entity;
+package com.infoshareacademy.mistrzowieVaBank.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
-@Entity
-@Table(name = "orders", //
-        uniqueConstraints = { @UniqueConstraint(columnNames = "Order_Num") })
-public class Order implements Serializable {
-
-    private static final long serialVersionUID = -2576670215015463100L;
+import java.util.List;
  
-    @Id
-    @Column(name = "ID", nullable = false)
+public class OrderInfo {
+ 
     private Long id;
- 
-    @Column(name = "Order_Date", nullable = false)
     private Date orderDate;
- 
-    @Column(name = "Order_Num", nullable = false)
     private int orderNum;
- 
-    @Column(name = "Amount", nullable = false)
     private BigDecimal amount;
  
-    @Column(name = "Customer_Name", length = 255, nullable = false)
     private String customerName;
- 
-    @Column(name = "Customer_Address", length = 255, nullable = false)
     private String customerAddress;
- 
-    @Column(name = "Customer_Email", length = 128, nullable = false)
     private String customerEmail;
- 
-    @Column(name = "Customer_Phone", length = 128, nullable = false)
     private String customerPhone;
+ 
+    private List<OrderDetailInfo> details;
+ 
+    public OrderInfo() {
+ 
+    }
+ 
+    // Using for Hibernate Query.
+    public OrderInfo(Long id, Date orderDate, int orderNum, //
+                     BigDecimal amount, String customerName, String customerAddress, //
+                     String customerEmail, String customerPhone) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.orderNum = orderNum;
+        this.amount = amount;
+ 
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+    }
 
     public Long getId() {
         return id;
@@ -60,15 +60,15 @@ public class Order implements Serializable {
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
     }
- 
+
     public BigDecimal getAmount() {
         return amount;
     }
- 
+
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
- 
+
     public String getCustomerName() {
         return customerName;
     }
@@ -99,6 +99,14 @@ public class Order implements Serializable {
  
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
+    }
+ 
+    public List<OrderDetailInfo> getDetails() {
+        return details;
+    }
+ 
+    public void setDetails(List<OrderDetailInfo> details) {
+        this.details = details;
     }
  
 }

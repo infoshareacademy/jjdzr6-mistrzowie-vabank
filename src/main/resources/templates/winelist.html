@@ -29,14 +29,11 @@
     </tr>
     </thead>
     <tbody>
-    <th th:if="${wine != null}">
-        <tr th:each="wine, iStat: ${winesjson}">
-            <th scope="row" th:text="${iStat.count}"></th>
-            <th scope="row" th:text="${wine.wineName}"></th>
-            <th scope="row" th:text="${wine.wineFlavour}"></th>
-            <th scope="row" th:text="${wine.winePrice}"></th>
-        </tr>
-    </th>
+    <tr th:each="wine : ${winelist}">
+        <td th:text="${wine.id}"></td>
+        <td th:text="${wine.name}"></td>
+        <td th:text="${wine.price}"></td>
+    </tr>
     </tbody>
 </table>
 
