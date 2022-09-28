@@ -9,15 +9,10 @@ import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.CustomerForm;
 import com.infoshareacademy.mistrzowieVaBank.pagination.PaginationResult;
-import com.infoshareacademy.mistrzowieVaBank.repository.WineListRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
-import com.infoshareacademy.mistrzowieVaBank.service.WineListServiceImpl;
-import com.infoshareacademy.mistrzowieVaBank.service.listaWin;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -30,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @Transactional
@@ -48,8 +42,6 @@ public class MainController {
    @Autowired
    private WineListService wineListService;
 
-   @Autowired
-   private WineListServiceImpl wineListServiceImpl;
 
    @InitBinder
    public void myInitBinder(WebDataBinder dataBinder) {
@@ -275,18 +267,17 @@ public class MainController {
       response.getOutputStream().close();
    }
 
+
 //   @GetMapping("/listaWin")
-//   public String showWineList(Model model) {
-//
-//      model.addAttribute("listaWin", wineListService.findAll());
+//   public String showWineList(Model model){
+//      Wine wine = new Wine();
+//      model.addAttribute("wine", wine);
 //      return "listaWin";
-//
 //   }
 
-   @GetMapping("/listaWin")
+   @RequestMapping(value = "/listaWin", method = RequestMethod.GET)
    public String showWineList(Model model){
-      Wine wine = new Wine();
-      model.addAttribute("wine", wine);
+      model.addAttribute("wines", wineListService.findAll());
       return "listaWin";
    }
 

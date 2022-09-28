@@ -37,9 +37,9 @@ create table wine
     type     varchar(255)   null,
     year     int            not null,
     `IMAGE` longblob,
-    `CREATE_DATE` datetime NOT NULL,
-    constraint UK_3jx72qqpwje587ypaf742i5s0
-        unique (name)
+    `CREATE_DATE` datetime NOT NULL
+#     constraint UK_3jx72qqpwje587ypaf742i5s0
+#         unique (name)
 );
 INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (0,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
 INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (1,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')

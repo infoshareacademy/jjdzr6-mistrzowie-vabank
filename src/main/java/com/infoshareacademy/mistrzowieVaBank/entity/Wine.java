@@ -1,12 +1,16 @@
 package com.infoshareacademy.mistrzowieVaBank.entity;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "wine")
+@NoArgsConstructor
 public class Wine {
+
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -26,6 +30,17 @@ public class Wine {
 
     @Column(name = "Create_Date", nullable = false)
     private LocalDate createDate;
+
+    public Wine(long id, String flavour, String name, String origin, BigDecimal price, String type, int year, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.flavour = flavour;
+        this.type = type;
+        this.year = year;
+        this.origin = origin;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     public Long getId() {
         return id;

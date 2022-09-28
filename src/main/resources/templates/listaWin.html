@@ -25,13 +25,24 @@
         <th scope="col">Nazwa wina</th>
         <th scope="col">Smak</th>
         <th scope="col">Cena</th>
+        <th scope="col">Rok</th>
+        <th scope="col">Pochodzenie</th>
+        <th scope="col">Typ</th>
+        <th scope="col">Ilość</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="wine : ${winelist}">
+    <tr th:each="wine : ${wines}">
         <td th:text="${wine.id}"></td>
         <td th:text="${wine.name}"></td>
+        <td th:text="${wine.flavour}"></td>
         <td th:text="${wine.price}"></td>
+        <td th:text="${wine.year}"></td>
+        <td th:text="${wine.origin}"></td>
+        <td th:text="${wine.type}"></td>
+        <td th:text="${wine.quantity}"></td>
+
+
     </tr>
     </tbody>
 </table>
