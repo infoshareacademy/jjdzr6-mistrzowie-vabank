@@ -267,40 +267,10 @@ public class MainController {
       response.getOutputStream().close();
    }
 
-
-//   @GetMapping("/listaWin")
-//   public String showWineList(Model model){
-//      Wine wine = new Wine();
-//      model.addAttribute("wine", wine);
-//      return "listaWin";
-//   }
-
-   @RequestMapping(value = "/listaWin", method = RequestMethod.GET)
-   public String showWineList(Model model){
+   @RequestMapping(value = "/wineList", method = RequestMethod.GET)
+   public String showWineList(Model model) {
       model.addAttribute("wines", wineListService.findAll());
-      return "listaWin";
+      return "wineList";
    }
-
-   //TODO
-//   @GetMapping("  ")
-//   public String findPaginated(@PathVariable (value = "pageNo") int pageNo,
-//                               @RequestParam("sortField") String sortField,
-//                               @RequestParam("sortDir") String sortDir,
-//                               Model model) {
-//      int pageSize = 5;
-//
-//      Page<Wine> page = wineListServiceImpl.findPaginated(pageNo, pageSize, sortField, sortDir);
-//      List<Wine> wineList = page.getContent();
-//
-//      model.addAttribute("currentPage", pageNo);
-//      model.addAttribute("totalPages", page.getTotalPages());
-//      model.addAttribute("totalItems", page.getTotalElements());
-//
-//      model.addAttribute("sortField", sortField);
-//      model.addAttribute("sortDir", sortDir);
-//      model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-//
-//      model.addAttribute("wine", wineList);
-//      return "listaWin";
-//   }
 }
+

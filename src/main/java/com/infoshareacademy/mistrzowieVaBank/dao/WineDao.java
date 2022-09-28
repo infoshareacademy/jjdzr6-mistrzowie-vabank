@@ -1,6 +1,5 @@
 package com.infoshareacademy.mistrzowieVaBank.dao;
 
-
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.WineForm;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.NoResultException;
 import java.io.IOException;
 import java.time.LocalDate;
