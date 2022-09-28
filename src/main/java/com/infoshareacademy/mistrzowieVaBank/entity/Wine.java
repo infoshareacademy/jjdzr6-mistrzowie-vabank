@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Wine {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String name;
