@@ -42,7 +42,6 @@ public class MainController {
    @Autowired
    private WineListService wineListService;
 
-
    @InitBinder
    public void myInitBinder(WebDataBinder dataBinder) {
       Object target = dataBinder.getTarget();
@@ -76,6 +75,8 @@ public class MainController {
    }
 
    // Product List
+
+   //TODO - usunac?
    @RequestMapping({"/winelist"})
    public String listProductHandler(Model model, //
                                     @RequestParam(value = "name", defaultValue = "") String likeName,
@@ -267,10 +268,16 @@ public class MainController {
       response.getOutputStream().close();
    }
 
-   @RequestMapping(value = "/wineList", method = RequestMethod.GET)
+   @RequestMapping(value = "/winelist", method = RequestMethod.GET)
    public String showWineList(Model model) {
       model.addAttribute("wines", wineListService.findAll());
-      return "wineList";
+      return "winelist";
+   }
+
+   @RequestMapping("/wine/{id}")
+   public String findWine(@PathVariable() Long id, Model model){
+      model.addAttribute("wine", wineDao.findWine(id));
+      return "wine";
    }
 }
 

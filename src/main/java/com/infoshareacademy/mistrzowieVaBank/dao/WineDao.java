@@ -24,7 +24,7 @@ public class WineDao {
 
     public Wine findWine(Long id) {
         try {
-            String sql = "Select e from " + Wine.class.getName() + " e Where e.code =:code ";
+            String sql = "Select e from " + Wine.class.getName() + " e Where e.id =:id ";
 
             Session session = this.sessionFactory.getCurrentSession();
             Query<Wine> query = session.createQuery(sql, Wine.class);
