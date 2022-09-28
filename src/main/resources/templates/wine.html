@@ -40,15 +40,14 @@
 
                     </div>
 
-                    <p class="lead">
-            <span class="mr-1">
-            </span>
-                        $<span th:text="${wine.price}"></span>
-                    </p>
+<!--                    <p class="lead">-->
+<!--            <span class="mr-1">-->
+<!--            </span>-->
+<!--                        -->
+<!--                    </p>-->
 
-                    <p class="lead font-weight-bold" th:each="wine : ${wines}">Primitivo Luccarelli IGT Puglia</p>
                     <p th:text="${wine.name}"></p>
-
+                    <p th:text="${wine.price}"></p>
                     Year: <p th:text="${wine.year}"></p>
 
                     <p>The Primitivo Puglia from the wine-growing region of Puglia offers a dense colour in the glass.
