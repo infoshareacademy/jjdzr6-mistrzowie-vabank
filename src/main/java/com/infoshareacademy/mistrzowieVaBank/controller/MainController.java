@@ -269,14 +269,7 @@ public class MainController {
    }
 
    @RequestMapping(value = "/winelist", method = RequestMethod.GET)
-   public String showWineList(Model model,
-                              @RequestParam(value = "name", defaultValue = "") String likeName,
-                              @RequestParam(value = "page", defaultValue = "1") int page) {
-      final int maxResult = 8;
-      final int maxNavigationPage = 10;
-
-      PaginationResult<WineInfo> result = wineDao.queryProducts(page, //
-               maxResult, maxNavigationPage, likeName);
+   public String showWineList(Model model){
       model.addAttribute("wines", wineListService.findAll());
       return "winelist";
    }
@@ -286,5 +279,15 @@ public class MainController {
       model.addAttribute("wine", wineDao.findWine(id));
       return "wine";
    }
+
+   //TODO
+
+/*   @RequestParam(value = "name", defaultValue = "") String likeName,
+   @RequestParam(value = "page", defaultValue = "1") int page) {
+      final int maxResult = 8;
+      final int maxNavigationPage = 10;
+
+      PaginationResult<WineInfo> result = wineDao.queryProducts(page, //
+              maxResult, maxNavigationPage, likeName);*/
 }
 

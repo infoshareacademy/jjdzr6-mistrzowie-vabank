@@ -31,24 +31,32 @@
                 <!--Content-->
                 <div class="p-4">
 
-                    <div class="mb-3">
+<!--                    <div class="mb-3">-->
 
-                        <span class="badge rounded-pill badge-danger">Red wine</span>
-                        <span class="badge rounded-pill badge-dark">Primitivo</span>
-                        <span class="badge rounded-pill badge-success">New</span>
-                        <span class="badge rounded-pill badge-primary">Bestseller</span>
+<!--                        <span class="badge rounded-pill badge-danger">Red wine</span>-->
+<!--                        <span class="badge rounded-pill badge-dark">Primitivo</span>-->
+<!--                        <span class="badge rounded-pill badge-success">New</span>-->
+<!--                        <span class="badge rounded-pill badge-primary">Bestseller</span>-->
 
-                    </div>
+<!--                    </div>-->
 
-<!--                    <p class="lead">-->
-<!--            <span class="mr-1">-->
-<!--            </span>-->
-<!--                        -->
-<!--                    </p>-->
+                    <b><p th:text="${wine.name}"></p></b>
+                    <b><span th:text="${wine.price}"></span>$</b><br>
+                    <p><form class="d-flex justify-content-left">
+                        <!-- Default input -->
+                        <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                        <button class="btn btn-danger btn-md my-0 p" type="submit">Add to cart
+                            <i class="fas fa-shopping-cart ml-1"></i>
+                        </button>
 
-                    <p th:text="${wine.name}"></p>
-                    <p th:text="${wine.price}"></p>
-                    Year: <p th:text="${wine.year}"></p>
+                    </form></p>
+                    <br>
+                    Year: <span th:text="${wine.year}"></span><br>
+                    Flavour: <span th:text="${wine.flavour}"></span><br>
+                    Type: <span th:text="${wine.type}"></span><br>
+                    Origin: <span th:text="${wine.origin}"></span><br>
+                    Quantity: <span th:text="${wine.quantity}"></span> sztuk<br>
+                    Shipping: 24 hours<br><br>
 
                     <p>The Primitivo Puglia from the wine-growing region of Puglia offers a dense colour in the glass.
                         The first nose of the Primitivo Puglia reveals notes of fruit bread, dried fruit and prunes. The
@@ -60,16 +68,8 @@
                         acidity, the Primitivo flatters with a pleasing mouthfeel, without lacking juicy liveliness at
                         the same time.</p>
 
-                    Quantity: <p th:text="${wine.quantity}"></p>
 
-                    <form class="d-flex justify-content-left">
-                        <!-- Default input -->
-                        <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                        <button class="btn btn-danger btn-md my-0 p" type="submit">Add to cart
-                            <i class="fas fa-shopping-cart ml-1"></i>
-                        </button>
 
-                    </form>
 
                 </div>
                 <!--Content-->
