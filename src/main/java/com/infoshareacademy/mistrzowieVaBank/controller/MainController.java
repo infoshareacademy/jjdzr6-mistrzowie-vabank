@@ -76,21 +76,6 @@ public class MainController {
 
    // Product List
 
-   //TODO - usunac?
-   @RequestMapping({"/winelist"})
-   public String listProductHandler(Model model, //
-                                    @RequestParam(value = "name", defaultValue = "") String likeName,
-                                    @RequestParam(value = "page", defaultValue = "1") int page) {
-      final int maxResult = 8;
-      final int maxNavigationPage = 10;
-
-      PaginationResult<WineInfo> result = wineDao.queryProducts(page, //
-              maxResult, maxNavigationPage, likeName);
-
-      model.addAttribute("winelist", result);
-      return "winelist";
-   }
-
    @RequestMapping({"/buyProduct"})
    public String listProductHandler(HttpServletRequest request, Model model, //
                                     @RequestParam(value = "id", defaultValue = "") Long id) {
@@ -150,8 +135,8 @@ public class MainController {
       CartInfo myCart = Utils.getCartInSession(request);
       CartInfo cartInfo = Utils.getCartInSession(request);
 
-      model.addAttribute("cartForm", myCart);
-      model.addAttribute("myCart", cartInfo);
+      model.addAttribute("cartForm", cartInfo);
+      model.addAttribute("myCart", myCart);
       return "shoppingCart";
    }
 
@@ -267,6 +252,7 @@ public class MainController {
       }
       response.getOutputStream().close();
    }
+
 
    @RequestMapping(value = "/winelist", method = RequestMethod.GET)
    public String showWineList(Model model){

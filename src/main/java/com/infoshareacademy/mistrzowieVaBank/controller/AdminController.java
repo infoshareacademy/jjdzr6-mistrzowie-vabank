@@ -36,7 +36,7 @@ public class AdminController {
  
    @Autowired
    private ProductFormValidator productFormValidator;
- 
+
    @InitBinder
    public void myInitBinder(WebDataBinder dataBinder) {
       Object target = dataBinder.getTarget();
@@ -44,34 +44,34 @@ public class AdminController {
          return;
       }
       System.out.println("Target=" + target);
- 
+
       if (target.getClass() == WineForm.class) {
          dataBinder.setValidator(productFormValidator);
       }
    }
- 
+
    // GET: Show Login Page
    @RequestMapping(value = { "/admin/login" }, method = RequestMethod.GET)
    public String login(Model model) {
- 
+
       return "login";
    }
- 
+
    @RequestMapping(value = { "/admin/accountInfo" }, method = RequestMethod.GET)
    public String accountInfo(Model model) {
- 
+
       UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       System.out.println(userDetails.getPassword());
       System.out.println(userDetails.getUsername());
       System.out.println(userDetails.isEnabled());
- 
+
       model.addAttribute("userDetails", userDetails);
       return "accountInfo";
    }
- 
+
    @RequestMapping(value = { "/admin/winelist" }, method = RequestMethod.GET)
    public String orderList(Model model, //
-         @RequestParam(value = "page", defaultValue = "1") String pageStr) {
+                           @RequestParam(value = "page", defaultValue = "1") String pageStr) {
       int page = 1;
       try {
          page = Integer.parseInt(pageStr);
@@ -79,19 +79,19 @@ public class AdminController {
       }
       final int MAX_RESULT = 5;
       final int MAX_NAVIGATION_PAGE = 10;
- 
+
       PaginationResult<OrderInfo> paginationResult //
-            = orderDAO.listOrderInfo(page, MAX_RESULT, MAX_NAVIGATION_PAGE);
- 
+              = orderDAO.listOrderInfo(page, MAX_RESULT, MAX_NAVIGATION_PAGE);
+
       model.addAttribute("paginationResult", paginationResult);
       return "winelist";
    }
- 
+
    // GET: Show product.
    @RequestMapping(value = { "/admin/wine" }, method = RequestMethod.GET)
    public String product(Model model, @RequestParam(value = "id", defaultValue = "") Long id) {
       WineForm wineForm = null;
- 
+
       if (id != null) {
          Wine wine = wineDao.findWine(id);
          if (wine != null) {
@@ -105,14 +105,14 @@ public class AdminController {
       model.addAttribute("wineForm", wineForm);
       return "wine";
    }
- 
+
    // POST: Save product
    @RequestMapping(value = { "/admin/wine" }, method = RequestMethod.POST)
    public String productSave(Model model, //
-         @ModelAttribute("productForm") @Validated WineForm productForm, //
-         BindingResult result, //
-         final RedirectAttributes redirectAttributes) {
- 
+                             @ModelAttribute("productForm") @Validated WineForm productForm, //
+                             BindingResult result, //
+                             final RedirectAttributes redirectAttributes) {
+
       if (result.hasErrors()) {
          return "wine";
       }
@@ -125,12 +125,12 @@ public class AdminController {
          // Show product form.
          return "wine";
       }
- 
+
       return "redirect:/winelist";
    }
- 
+
    @RequestMapping(value = { "/admin/order" }, method = RequestMethod.GET)
-   public String orderView(Model model, @RequestParam("orderId") String orderId) {
+   public String orderView(Model model, @RequestParam("orderId") Long orderId) {
       OrderInfo orderInfo = null;
       if (orderId != null) {
          orderInfo = this.orderDAO.getOrderInfo(orderId);
@@ -140,9 +140,9 @@ public class AdminController {
       }
       List<OrderDetailInfo> details = this.orderDAO.listOrderDetailInfos(orderId);
       orderInfo.setDetails(details);
- 
+
       model.addAttribute("orderInfo", orderInfo);
- 
+
       return "order";
    }
  

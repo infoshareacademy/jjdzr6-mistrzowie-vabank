@@ -9,27 +9,27 @@ import java.math.BigDecimal;
 public class OrderDetail implements Serializable {
 
     private static final long serialVersionUID = 7550745928843183535L;
- 
+
     @Id
     @Column(name = "ID", nullable = false)
     private Long id;
- 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID", nullable = false, //
             foreignKey = @ForeignKey(name = "ORDER_DETAIL_ORD_FK"))
     private Order order;
- 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ID", nullable = false, //
             foreignKey = @ForeignKey(name = "ORDER_DETAIL_PROD_FK"))
     private Wine wine;
- 
-    @Column(name = "Quanity", nullable = false)
-    private int quanity;
- 
+
+    @Column(name = "Quantity", nullable = false)
+    private int quantity;
+
     @Column(name = "Price", nullable = false)
     private BigDecimal price;
- 
+
     @Column(name = "Amount", nullable = false)
     private BigDecimal amount;
 
@@ -44,7 +44,7 @@ public class OrderDetail implements Serializable {
     public Order getOrder() {
         return order;
     }
- 
+
     public void setOrder(Order order) {
         this.order = order;
     }
@@ -57,12 +57,12 @@ public class OrderDetail implements Serializable {
         this.wine = wine;
     }
 
-    public int getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
- 
-    public void setQuanity(int quanity) {
-        this.quanity = quanity;
+
+    public void setQuantity(int quanity) {
+        this.quantity = quanity;
     }
 
     public BigDecimal getPrice() {

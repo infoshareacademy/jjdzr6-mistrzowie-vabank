@@ -1,26 +1,28 @@
 package com.infoshareacademy.mistrzowieVaBank.dto;
 
+import java.math.BigDecimal;
+
 public class OrderDetailInfo {
     private Long id;
- 
-    private String productCode;
-    private String productName;
- 
-    private int quanity;
-    private double price;
-    private double amount;
- 
+
+    private Long wineId;
+    private String wineName;
+
+    private int quantity;
+    private BigDecimal price;
+    private BigDecimal amount;
+
     public OrderDetailInfo() {
- 
+
     }
- 
+
     // Using for JPA/Hibernate Query.
-    public OrderDetailInfo(Long id, String productCode, //
-            String productName, int quanity, double price, double amount) {
+    public OrderDetailInfo(Long id, Long wineId, //
+                           String wineName, int quantity, BigDecimal price, BigDecimal amount) {
         this.id = id;
-        this.productCode = productCode;
-        this.productName = productName;
-        this.quanity = quanity;
+        this.wineId = wineId;
+        this.wineName = wineName;
+        this.quantity = quantity;
         this.price = price;
         this.amount = amount;
     }
@@ -33,43 +35,43 @@ public class OrderDetailInfo {
         this.id = id;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public Long getWineId() {
+        return wineId;
     }
- 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+
+    public void setWineId(Long wineId) {
+        this.wineId = wineId;
     }
- 
-    public String getProductName() {
-        return productName;
+
+    public String getWineName() {
+        return wineName;
     }
- 
-    public void setProductName(String productName) {
-        this.productName = productName;
+
+    public void setWineName(String wineName) {
+        this.wineName = wineName;
     }
- 
-    public int getQuanity() {
-        return quanity;
+
+    public int getQuantity() {
+        return quantity;
     }
- 
-    public void setQuanity(int quanity) {
-        this.quanity = quanity;
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
- 
-    public double getPrice() {
+
+    public BigDecimal getPrice() {
         return price;
     }
- 
-    public void setPrice(double price) {
+
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
- 
-    public double getAmount() {
+
+    public BigDecimal getAmount() {
         return amount;
     }
- 
-    public void setAmount(double amount) {
+
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 }

@@ -5,38 +5,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartInfo {
-	 
+
     private int orderNum;
- 
+
     private CustomerInfo customerInfo;
- 
+
     private final List<CartLineInfo> cartLines = new ArrayList<CartLineInfo>();
- 
+
     public CartInfo() {
- 
+
     }
- 
+
     public int getOrderNum() {
         return orderNum;
     }
- 
+
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
     }
- 
+
     public CustomerInfo getCustomerInfo() {
         return customerInfo;
     }
- 
+
     public void setCustomerInfo(CustomerInfo customerInfo) {
         this.customerInfo = customerInfo;
     }
- 
+
     public List<CartLineInfo> getCartLines() {
         return this.cartLines;
     }
- 
-    private CartLineInfo findLineByCode(Long id) {
+
+    private CartLineInfo findLineById(Long id) {
         for (CartLineInfo line : this.cartLines) {
             if (line.getWineInfo().getId().equals(id)) {
                 return line;
@@ -44,10 +44,10 @@ public class CartInfo {
         }
         return null;
     }
- 
+
     public void addProduct(WineInfo wineInfo, int quantity) {
-        CartLineInfo line = this.findLineByCode(wineInfo.getId());
- 
+        CartLineInfo line = this.findLineById(wineInfo.getId());
+
         if (line == null) {
             line = new CartLineInfo();
             line.setQuantity(0);
@@ -61,14 +61,14 @@ public class CartInfo {
             line.setQuantity(newQuantity);
         }
     }
- 
+
     public void validate() {
- 
+
     }
- 
+
     public void updateProduct(Long id, int quantity) {
-        CartLineInfo line = this.findLineByCode(id);
- 
+        CartLineInfo line = this.findLineById(id);
+
         if (line != null) {
             if (quantity <= 0) {
                 this.cartLines.remove(line);
@@ -77,22 +77,22 @@ public class CartInfo {
             }
         }
     }
- 
+
     public void removeProduct(WineInfo wineInfo) {
-        CartLineInfo line = this.findLineByCode(wineInfo.getId());
+        CartLineInfo line = this.findLineById(wineInfo.getId());
         if (line != null) {
             this.cartLines.remove(line);
         }
     }
- 
+
     public boolean isEmpty() {
         return this.cartLines.isEmpty();
     }
- 
+
     public boolean isValidCustomer() {
         return this.customerInfo != null && this.customerInfo.isValid();
     }
- 
+
     public int getQuantityTotal() {
         int quantity = 0;
         for (CartLineInfo line : this.cartLines) {
@@ -100,15 +100,15 @@ public class CartInfo {
         }
         return quantity;
     }
- 
+
     public BigDecimal getAmountTotal() {
         BigDecimal total = BigDecimal.ZERO;
         for (CartLineInfo line : this.cartLines) {
-            total.add(line.getAmount());
+            total = total.add(line.getAmount());
         }
         return total;
     }
- 
+
     public void updateQuantity(CartInfo cartForm) {
         if (cartForm != null) {
             List<CartLineInfo> lines = cartForm.getCartLines();
@@ -116,7 +116,7 @@ public class CartInfo {
                 this.updateProduct(line.getWineInfo().getId(), line.getQuantity());
             }
         }
- 
+
     }
  
 }
