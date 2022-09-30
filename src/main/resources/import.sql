@@ -54,7 +54,7 @@ INSERT INTO mistrzowieVaBank.accounts (user_name, encrypted_password, active, us
 INSERT INTO mistrzowieVaBank.orders (id, order_date, order_num, amount, customer_name, customer_address, customer_email, customer_phone) VALUES (1, '2022-10-10',1, 100, 'Jan', 'asdvvc', 'ann@example.com', 123456789);
 
 
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (1, 'Château Rieussec Premiere Cru Classe Sauternes', 'Słodkie', 'Białe', 2014, 'Francja', 560, 10, NULL,'2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (1, 'Château Rieussec Premiere Cru Classe Sauternes', 'Słodkie', 'Białe', 2014, 'Francja', 560, 10, NULL,'2022-10-10', 'TESTOWY OPISSSSS');
 INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (2, 'Hétszőlő Tokaj Sweet Szamorodni Domaine Imperial', 'Słodkie', 'Białe', 2017, 'Węgry', 100, 15, NULL, '2022-10-10');
 INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (3, 'Château Lafite Rothschild Premiere Cru Classe Pauillac', 'Wytrawne', 'Czerwone', 2010, 'Francja', 8550, 6, NULL,'2022-10-10');
 INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (4, 'Chateau Mouton Rothschild 1-er Cru Classe', 'Wytrawne', 'Czerwone', 2011, 'Francja', 4650, 20,  NULL,'2022-10-10');
@@ -108,7 +108,8 @@ CREATE TABLE `wine`
     price    decimal(19, 2) null,
     quantity int            not null,
     `CREATE_DATE` datetime NOT NULL,
-    `IMAGE` longblob
+    `IMAGE` longblob,
+    spec varchar(1500) null
 #     constraint UK_3jx72qqpwje587ypaf742i5s0
 #         unique (name)
 );
