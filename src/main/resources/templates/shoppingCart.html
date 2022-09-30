@@ -40,7 +40,7 @@
                            th:name="|cartLines[${varStatus.index}].wineInfo.id|"
                            th:value="${cartLineInfo.wineInfo.id}" />
                 <a href="" style="margin-right: 10px;">Move to Favorite</a> 
-                <a th:href="@{|/shoppingCartRemoveProduct?code=${cartLineInfo.wineInfo.id}|}" style="margin-right: 10px;"> Remove</a>
+                <a th:href="@{|/shoppingCartRemoveProduct?id=${cartLineInfo.wineInfo.id}|}" style="margin-right: 10px;"> Remove</a>
               </td>
               <td> <input type="text" th:name="|cartLines[${varStatus.index}].quantity|" th:value="${cartLineInfo.quantity}" class="form-control" style="width: 50px; height: 35px;">
               
