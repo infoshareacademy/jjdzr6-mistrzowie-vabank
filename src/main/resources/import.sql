@@ -15,9 +15,6 @@ CREATE TABLE order_details (
                                CONSTRAINT pk_order_details PRIMARY KEY (id)
 );
 
-ALTER TABLE order_details ADD CONSTRAINT FK_ORDER_DETAILS_ON_ORDER FOREIGN KEY (order_id) REFERENCES orders (id);
-
-ALTER TABLE order_details ADD CONSTRAINT FK_ORDER_DETAILS_ON_PRODUCT FOREIGN KEY (product_id) REFERENCES wine (id);
 CREATE TABLE orders (
                         id BIGINT NOT NULL,
                         order_date datetime NOT NULL,
@@ -30,7 +27,6 @@ CREATE TABLE orders (
                         CONSTRAINT pk_orders PRIMARY KEY (id)
 );
 
-ALTER TABLE orders ADD CONSTRAINT uc_7a4d96dd783e6268bc9173d62 UNIQUE (order_num);
 CREATE TABLE wine (
                       id BIGINT AUTO_INCREMENT NOT NULL,
                       name VARCHAR(255) NULL,
@@ -44,6 +40,13 @@ CREATE TABLE wine (
                       create_date date NOT NULL,
                       CONSTRAINT pk_wine PRIMARY KEY (id)
 );
+
+ALTER TABLE order_details ADD CONSTRAINT FK_ORDER_DETAILS_ON_ORDER FOREIGN KEY (order_id) REFERENCES orders (id);
+
+ALTER TABLE order_details ADD CONSTRAINT FK_ORDER_DETAILS_ON_PRODUCT FOREIGN KEY (product_id) REFERENCES wine (id);
+
+
+ALTER TABLE orders ADD CONSTRAINT uc_7a4d96dd783e6268bc9173d62 UNIQUE (order_num);
 
 ALTER TABLE wine ADD CONSTRAINT uc_wine_name UNIQUE (name);
 
