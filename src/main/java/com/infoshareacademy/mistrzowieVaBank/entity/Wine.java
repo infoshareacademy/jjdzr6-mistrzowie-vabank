@@ -20,6 +20,8 @@ public class Wine {
     private String flavour;
     private String type;
     private int year;
+
+    private String spec;
     private String origin;
     private BigDecimal price;
     private int quantity;
@@ -31,7 +33,7 @@ public class Wine {
     @Column(name = "Create_Date", nullable = false)
     private LocalDate createDate;
 
-    public Wine(long id, String flavour, String name, String origin, BigDecimal price, String type, int year, int quantity) {
+    public Wine(long id, String flavour, String name, String origin, BigDecimal price, String type, int year, int quantity, String spec) {
         this.id = id;
         this.name = name;
         this.flavour = flavour;
@@ -40,6 +42,7 @@ public class Wine {
         this.origin = origin;
         this.price = price;
         this.quantity = quantity;
+        this.spec = spec;
     }
 
     public Long getId() {
@@ -120,5 +123,13 @@ public class Wine {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getSpec() {
+        return spec;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
     }
 }

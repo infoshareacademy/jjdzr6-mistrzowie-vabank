@@ -36,6 +36,7 @@ CREATE TABLE wine (
                       origin VARCHAR(255) NULL,
                       price DECIMAL NULL,
                       quantity INT NOT NULL,
+                      spec VARCHAR(5000) NULL,
                       image BLOB NULL,
                       create_date date NOT NULL,
                       CONSTRAINT pk_wine PRIMARY KEY (id)
@@ -57,18 +58,18 @@ INSERT INTO mistrzowieVaBank.accounts (user_name, encrypted_password, active, us
 INSERT INTO mistrzowieVaBank.orders (id, order_date, order_num, amount, customer_name, customer_address, customer_email, customer_phone) VALUES (1, '2022-10-10',1, 100, 'Jan', 'asdvvc', 'ann@example.com', 123456789);
 
 
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (1, 'Château Rieussec Premiere Cru Classe Sauternes', 'Słodkie', 'Białe', 2014, 'Francja', 560, 10, NULL,'2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (2, 'Hétszőlő Tokaj Sweet Szamorodni Domaine Imperial', 'Słodkie', 'Białe', 2017, 'Węgry', 100, 15, NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (3, 'Château Lafite Rothschild Premiere Cru Classe Pauillac', 'Wytrawne', 'Czerwone', 2010, 'Francja', 8550, 6, NULL,'2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (4, 'Chateau Mouton Rothschild 1-er Cru Classe', 'Wytrawne', 'Czerwone', 2011, 'Francja', 4650, 20,  NULL,'2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (5, 'Catena Zapata Adrianna Vineyard „River Stones Malbec', 'Czerwone', 'Białe', 2018, 'Argentyna', 699, 2, NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (6, 'Muscaris Kojder', 'Półsłodkie', 'Białe', 2020, 'Polska', 89, 420, NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (7, 'Araldica Moscato d Asti', 'Musujące', 'Białe', 2020, 'Włochy', 55, 11, NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (8, 'Tamada Kindzmarauli', 'Czerwone', 'Białe', 2019, 'Gruzja', 49, 5, NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (9, 'Dominio de Pingus Pingus Ribera Del Duero DO', 'Wytrawne', 'Czerwone', 2018, 'Hiszpania', 5549, 64,  NULL,'2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (10, 'Bestheim Pinot Gris Classic Alsace', 'Półwytrawne', 'Białe', 2019, 'Francja', 65, 24, NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (11, 'Carmenere Gran Reserva Vina Falernia', 'Półwytrawne', 'Czerwone', 2018, 'Chile', 79, 13,  NULL, '2022-10-10');
-INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, IMAGE, CREATE_DATE) VALUES (12, 'Soley Winnica Słońce i Wiatr', 'Półwytrawne', 'Białe', 2020, 'Polska', 79, 44,  NULL,'2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (1, 'Château Rieussec Premiere Cru Classe Sauternes', 'Słodkie', 'Białe', 2014, 'Francja', 560, 10,'testowy opis', NULL,'2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (2, 'Hétszőlő Tokaj Sweet Szamorodni Domaine Imperial', 'Słodkie', 'Białe', 2017, 'Węgry', 100, 15,'testowy opis', NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (3, 'Château Lafite Rothschild Premiere Cru Classe Pauillac', 'Wytrawne', 'Czerwone', 2010, 'Francja',8550, 6,'testowy opis',  NULL,'2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (4, 'Chateau Mouton Rothschild 1-er Cru Classe', 'Wytrawne', 'Czerwone', 2011, 'Francja', 4650, 20,'testowy opis',  NULL,'2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (5, 'Catena Zapata Adrianna Vineyard „River Stones Malbec', 'Czerwone', 'Białe', 2018, 'Argentyna', 699, 2,'testowy opis', NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (6, 'Muscaris Kojder', 'Półsłodkie', 'Białe', 2020, 'Polska', 89, 420,'testowy opis', NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (7, 'Araldica Moscato d Asti', 'Musujące', 'Białe', 2020, 'Włochy', 55, 11,'testowy opis', NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (8, 'Tamada Kindzmarauli', 'Czerwone', 'Białe', 2019, 'Gruzja', 49, 5,'testowy opis', NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (9, 'Dominio de Pingus Pingus Ribera Del Duero DO', 'Wytrawne', 'Czerwone', 2018, 'Hiszpania', 5549, 64,'testowy opis',  NULL,'2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (10, 'Bestheim Pinot Gris Classic Alsace', 'Półwytrawne', 'Białe', 2019, 'Francja', 65, 24,'testowy opis', NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (11, 'Carmenere Gran Reserva Vina Falernia', 'Półwytrawne', 'Czerwone', 2018, 'Chile', 79, 13,'testowy opis',  NULL, '2022-10-10');
+INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (12, 'Soley Winnica Słońce i Wiatr', 'Półwytrawne', 'Białe', 2020, 'Polska', 79, 44,'testowy opis',  NULL,'2022-10-10');
 
 /*
 CREATE TABLE `accounts` (

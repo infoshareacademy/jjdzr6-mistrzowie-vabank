@@ -29,7 +29,9 @@ public class WineListService {
                         result.getBigDecimal("price"),
                         result.getString("type"),
                         result.getInt("year"),
-                        result.getInt("quantity"));
+                        result.getInt("quantity"),
+                        result.getString("spec"));
+
                 return wine;
             }
         };

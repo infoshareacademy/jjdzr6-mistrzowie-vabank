@@ -52,18 +52,10 @@
                     Flavour: <span th:text="${wine.flavour}"></span><br>
                     Type: <span th:text="${wine.type}"></span><br>
                     Origin: <span th:text="${wine.origin}"></span><br>
-                    Quantity: <span th:text="${wine.quantity}"></span> sztuk<br>
+                    Quantity: <span th:text="${wine.quantity}"></span> pcs<br>
                     Shipping: 24 hours<br><br><br><br>
-
-                    <p>The Primitivo Puglia from the wine-growing region of Puglia offers a dense colour in the glass.
-                        The first nose of the Primitivo Puglia reveals notes of fruit bread, dried fruit and prunes. The
-                        fruity aspects of the bouquet are joined by more fruity-balsamic nuances.
-
-                        This red from Luccarelli is ideal for all wine connoisseurs who like as little residual sugar as
-                        possible in their wine. At the same time, however, it never appears meager or brittle, which is
-                        absolutely not a matter of course for a wine in the entry-level range. Due to the moderate fruit
-                        acidity, the Primitivo flatters with a pleasing mouthfeel, without lacking juicy liveliness at
-                        the same time.</p>
+                    <p th:text="${wine.spec}"></p>
+                    <br><br>
 
 
 
