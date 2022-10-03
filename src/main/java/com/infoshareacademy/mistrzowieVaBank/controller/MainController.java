@@ -19,7 +19,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,7 +47,7 @@ public class MainController {
          return;
       }
       System.out.println("Target=" + target);
-
+      //TODO
       // Case update quantity in cart
       // (@ModelAttribute("cartForm") @Validated CartInfo cartForm)
       if (target.getClass() == CartInfo.class) {
@@ -63,11 +62,6 @@ public class MainController {
 
    }
 
-   @RequestMapping("/403")
-   public String accessDenied() {
-      return "/403";
-   }
-
    @RequestMapping("/")
    public String home() {
       return "index";
@@ -76,7 +70,7 @@ public class MainController {
    // Product List
 
    @RequestMapping({"/buyProduct"})
-   public String listProductHandler(HttpServletRequest request, Model model, //
+   public String listProductHandler(HttpServletRequest request,
                                     @RequestParam(value = "id", defaultValue = "") Long id) {
 
       Wine wine = null;
@@ -97,7 +91,7 @@ public class MainController {
    }
 
    @RequestMapping({"/shoppingCartRemoveProduct"})
-   public String removeProductHandler(HttpServletRequest request, Model model, //
+   public String removeProductHandler(HttpServletRequest request,
                                       @RequestParam(value = "id", defaultValue = "") Long id) {
       Wine product = null;
       if (id != null) {
@@ -119,7 +113,6 @@ public class MainController {
    // POST: Update quantity for product in cart
    @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.POST)
    public String shoppingCartUpdateQty(HttpServletRequest request, //
-                                       Model model, //
                                        @ModelAttribute("cartForm") CartInfo cartForm) {
 
       CartInfo cartInfo = Utils.getCartInSession(request);
@@ -161,10 +154,8 @@ public class MainController {
    // POST: Save customer information.
    @RequestMapping(value = {"/shoppingCartCustomer"}, method = RequestMethod.POST)
    public String shoppingCartCustomerSave(HttpServletRequest request, //
-                                          Model model, //
                                           @ModelAttribute("customerForm") @Validated CustomerForm customerForm, //
-                                          BindingResult result, //
-                                          final RedirectAttributes redirectAttributes) {
+                                          BindingResult result) {
 
       if (result.hasErrors()) {
          customerForm.setValid(false);
@@ -200,7 +191,7 @@ public class MainController {
    // POST: Submit Cart (Save)
    @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.POST)
 
-   public String shoppingCartConfirmationSave(HttpServletRequest request, Model model) {
+   public String shoppingCartConfirmationSave(HttpServletRequest request) {
       CartInfo cartInfo = Utils.getCartInSession(request);
 
       if (cartInfo.isEmpty()) {
@@ -239,7 +230,7 @@ public class MainController {
    }
 
    @RequestMapping(value = {"/productImage"}, method = RequestMethod.GET)
-   public void productImage(HttpServletRequest request, HttpServletResponse response, Model model,
+   public void productImage(HttpServletRequest request, HttpServletResponse response,
                             @RequestParam("id") Long id) throws IOException {
       Wine wine = null;
       if (id != null) {

@@ -3,7 +3,6 @@ package com.infoshareacademy.mistrzowieVaBank;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
@@ -18,11 +17,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 
-@EnableAutoConfiguration(exclude = { //
+@SpringBootApplication(exclude = { //
 		DataSourceAutoConfiguration.class, //
 		DataSourceTransactionManagerAutoConfiguration.class, //
 		HibernateJpaAutoConfiguration.class })
-@SpringBootApplication
 public class MistrzowieVaBankApplication {
 
 	@Autowired
