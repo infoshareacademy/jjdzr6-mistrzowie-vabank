@@ -51,9 +51,6 @@ ALTER TABLE orders ADD CONSTRAINT uc_7a4d96dd783e6268bc9173d62 UNIQUE (order_num
 
 ALTER TABLE wine ADD CONSTRAINT uc_wine_name UNIQUE (name);
 
-INSERT INTO mistrzowieVaBank.accounts (user_name, encrypted_password, active, user_role) VALUES ('employee1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1, 'ROLE_EMPLOYEE');
-INSERT INTO mistrzowieVaBank.accounts (user_name, encrypted_password, active, user_role) VALUES ('manager1', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', 1, 'ROLE_MANAGER');
-
 
 INSERT INTO mistrzowieVaBank.orders (id, order_date, order_num, amount, customer_name, customer_address, customer_email, customer_phone) VALUES (1, '2022-10-10',1, 100, 'Jan', 'asdvvc', 'ann@example.com', 123456789);
 
@@ -71,62 +68,3 @@ INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price,
 INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (11, 'Carmenere Gran Reserva Vina Falernia', 'Półwytrawne', 'Czerwone', 2018, 'Chile', 79, 13,'testowy opis',  NULL, '2022-10-10');
 INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (12, 'Soley Winnica Słońce i Wiatr', 'Półwytrawne', 'Białe', 2020, 'Polska', 79, 44,'testowy opis',  NULL,'2022-10-10');
 
-/*
-CREATE TABLE `accounts` (
-                            `USER_NAME` varchar(20) COLLATE latin1_general_ci NOT NULL,
-                            `ACTIVE` bit(1) NOT NULL,
-                            `ENCRYTED_PASSWORD` varchar(128) COLLATE latin1_general_ci NOT NULL,
-                            `USER_ROLE` varchar(20) COLLATE latin1_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
-
-CREATE TABLE `orders` (
-                          `ID` long COLLATE latin1_general_ci NOT NULL,
-                          `AMOUNT` double NOT NULL,
-                          `CUSTOMER_ADDRESS` varchar(255) COLLATE latin1_general_ci NOT NULL,
-                          `CUSTOMER_EMAIL` varchar(128) COLLATE latin1_general_ci NOT NULL,
-                          `CUSTOMER_NAME` varchar(255) COLLATE latin1_general_ci NOT NULL,
-                          `CUSTOMER_PHONE` varchar(128) COLLATE latin1_general_ci NOT NULL,
-                          `ORDER_DATE` datetime NOT NULL,
-                          `ORDER_NUM` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
-CREATE TABLE `order_details` (
-                                 `ID` long COLLATE latin1_general_ci NOT NULL,
-                                 `AMOUNT` double NOT NULL,
-                                 `PRICE` double NOT NULL,
-                                 `QUANITY` int(11) NOT NULL,
-                                 `ORDER_ID` varchar(50) COLLATE latin1_general_ci NOT NULL,
-                                 `PRODUCT_ID` varchar(20) COLLATE latin1_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
-CREATE TABLE `wine`
-(
-
-    id long            not null,
-    name     varchar(255)   null,
-    flavour  varchar(255)   null,
-    type     varchar(255)   null,
-    year     int            not null,
-    origin   varchar(255)   null,
-    price    decimal(19, 2) null,
-    quantity int            not null,
-    `CREATE_DATE` datetime NOT NULL,
-    `IMAGE` longblob,
-    spec varchar(1500) null
-#     constraint UK_3jx72qqpwje587ypaf742i5s0
-#         unique (name)
-);
-
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (1,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (2,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (3,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (4,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (5,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (6,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (7,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (8,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (9,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (10,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-INSERT INTO mistrzowieVaBank.wine (id, flavour, name, origin, price, quantity, type, year, IMAGE, CREATE_DATE) VALUES (11,"Słodkie", "Château Rieussec Premiere Cru Classe Sauternes", "Francja", 560, 10,"Białe", 2014, NULL, '2022-10-10')
-*/

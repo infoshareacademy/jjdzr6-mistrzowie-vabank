@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Table(name = "accounts")
 public class Account implements Serializable {
 
+    //TODO nie działa, naprawić/napisać od nowa
+
     private static final long serialVersionUID = -2054386655979281969L;
  
     public static final String ROLE_MANAGER = "MANAGER";

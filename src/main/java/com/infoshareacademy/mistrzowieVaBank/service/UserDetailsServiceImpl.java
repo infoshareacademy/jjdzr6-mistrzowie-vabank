@@ -1,7 +1,7 @@
 package com.infoshareacademy.mistrzowieVaBank.service;
 
 
-import com.infoshareacademy.mistrzowieVaBank.dao.AccountDAO;
+import com.infoshareacademy.mistrzowieVaBank.dao.AccountDao;
 import com.infoshareacademy.mistrzowieVaBank.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	@Autowired
-    private AccountDAO accountDAO;
+    private AccountDao accountDAO;
  
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

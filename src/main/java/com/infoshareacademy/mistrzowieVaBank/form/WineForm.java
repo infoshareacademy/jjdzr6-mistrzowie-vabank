@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 
 public class WineForm {
+
+    //TODO rozszerzyć
     private Long id;
     private String name;
     private BigDecimal price;

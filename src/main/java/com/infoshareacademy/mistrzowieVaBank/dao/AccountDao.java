@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class AccountDAO {
+public class AccountDao {
  
     @Autowired
     private SessionFactory sessionFactory;

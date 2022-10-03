@@ -108,7 +108,7 @@ public class CartInfo {
         }
         return total;
     }
-
+    //TODO nie działa, dlaczego?
     public void updateQuantity(CartInfo cartForm) {
         if (cartForm != null) {
             List<CartLineInfo> lines = cartForm.getCartLines();

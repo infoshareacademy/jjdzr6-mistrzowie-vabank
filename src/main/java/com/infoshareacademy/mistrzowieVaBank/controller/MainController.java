@@ -1,14 +1,13 @@
 package com.infoshareacademy.mistrzowieVaBank.controller;
 
 
-import com.infoshareacademy.mistrzowieVaBank.dao.OrderDAO;
+import com.infoshareacademy.mistrzowieVaBank.dao.OrderDao;
 import com.infoshareacademy.mistrzowieVaBank.dao.WineDao;
 import com.infoshareacademy.mistrzowieVaBank.dto.CartInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.CustomerInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.CustomerForm;
-import com.infoshareacademy.mistrzowieVaBank.pagination.PaginationResult;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
@@ -31,7 +30,7 @@ import java.io.IOException;
 public class MainController {
 
    @Autowired
-   private OrderDAO orderDAO;
+   private OrderDao orderDAO;
 
    @Autowired
    private WineDao wineDao;

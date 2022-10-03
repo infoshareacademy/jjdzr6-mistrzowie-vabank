@@ -5,7 +5,6 @@ import com.infoshareacademy.mistrzowieVaBank.dto.*;
 import com.infoshareacademy.mistrzowieVaBank.entity.Order;
 import com.infoshareacademy.mistrzowieVaBank.entity.OrderDetail;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
-import com.infoshareacademy.mistrzowieVaBank.pagination.PaginationResult;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,7 +18,7 @@ import java.util.UUID;
 
 @Transactional
 @Repository
-public class OrderDAO {
+public class OrderDao {
  
     @Autowired
     private SessionFactory sessionFactory;
@@ -81,18 +80,6 @@ public class OrderDAO {
         session.flush();
     }
 
-    // @page = 1, 2, ...
-    public PaginationResult<OrderInfo> listOrderInfo(int page, int maxResult, int maxNavigationPage) {
-        String sql = "Select new " + OrderInfo.class.getName()//
-                + "(ord.id, ord.orderDate, ord.orderNum, ord.amount, "
-                + " ord.customerName, ord.customerAddress, ord.customerEmail, ord.customerPhone) " + " from "
-                + Order.class.getName() + " ord "//
-                + " order by ord.orderNum desc";
-
-        Session session = this.sessionFactory.getCurrentSession();
-        Query<OrderInfo> query = session.createQuery(sql, OrderInfo.class);
-        return new PaginationResult<OrderInfo>(query, page, maxResult, maxNavigationPage);
-    }
 
     public Order findOrder(Long orderId) {
         Session session = this.sessionFactory.getCurrentSession();
