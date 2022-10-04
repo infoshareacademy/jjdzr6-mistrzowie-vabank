@@ -30,9 +30,8 @@
               <td><img th:src="@{|/productImage?code=${cartLineInfo.wineInfo.id}|}" width="190px"></td>
               <td>
                 <b style="color: #000;font-size:16px; font-weight: 600" th:utext="${cartLineInfo.wineInfo.name}"></b>
-                <p style="font-size: 14px;">CORE BLACK / CORE BLACK / CORE BLACK<br>
-                SIZE: M 7.5 / W 8.5<br>
-                PRICE: <span th:utext="${cartLineInfo.wineInfo.price}"></span>
+                <p style="font-size: 14px;"><span th:utext="${cartLineInfo.wineInfo.spec}"></span><br>
+                Wine price: $<span th:utext="${cartLineInfo.wineInfo.price}"></span>
                 </p>
                 
                 
@@ -56,11 +55,11 @@
               <a th:href="@{/shoppingCartCustomer}">Checkout</a>
                
               </td>
-              <td></td>
-              <td></td>      
+                <td></td>
+                <td></td>
             </tr>
-            
-            
+
+
          </form>
       </th:block>
           </table>

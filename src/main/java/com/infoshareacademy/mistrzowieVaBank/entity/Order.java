@@ -1,14 +1,14 @@
 package com.infoshareacademy.mistrzowieVaBank.entity;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "orders", //
-        uniqueConstraints = { @UniqueConstraint(columnNames = "Order_Num") })
+        uniqueConstraints = {@UniqueConstraint(columnNames = "Order_Num")})
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -2576670215015463100L;
@@ -101,5 +101,5 @@ public class Order implements Serializable {
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
     }
- 
+
 }

@@ -9,16 +9,19 @@ public class WineInfo {
     private Long id;
     private String name;
     private BigDecimal price;
- 
+    private String spec;
+
     public WineInfo() {
     }
- 
+
     public WineInfo(Wine wine) {
         this.id = wine.getId();
         this.name = wine.getName();
         this.price = wine.getPrice();
+        this.spec = wine.getSpec();
     }
- 
+
+
     // Using in JPA/Hibernate query
     public WineInfo(Long id, String name, BigDecimal price) {
         this.id = id;
@@ -48,5 +51,13 @@ public class WineInfo {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getSpec() {
+        return spec;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
     }
 }

@@ -14,27 +14,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return bCryptPasswordEncoder;
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        // Setting Service to find User in the database.
+        // And Setting PassswordEncoder
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-		// Setting Service to find User in the database.
-		// And Setting PassswordEncoder
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-	}
 }
-

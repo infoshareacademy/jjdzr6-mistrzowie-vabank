@@ -20,6 +20,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -28,235 +29,248 @@ import java.io.IOException;
 @Transactional
 public class MainController {
 
-   @Autowired
-   private OrderDao orderDAO;
+    @Autowired
+    private OrderDao orderDAO;
 
-   @Autowired
-   private WineDao wineDao;
+    @Autowired
+    private WineDao wineDao;
 
-   @Autowired
-   private CustomerFormValidator customerFormValidator;
+    @Autowired
+    private CustomerFormValidator customerFormValidator;
 
-   @Autowired
-   private WineListService wineListService;
+    @Autowired
+    private WineListService wineListService;
 
-   @InitBinder
-   public void myInitBinder(WebDataBinder dataBinder) {
-      Object target = dataBinder.getTarget();
-      if (target == null) {
-         return;
-      }
-      System.out.println("Target=" + target);
-      //TODO
-      // Case update quantity in cart
-      // (@ModelAttribute("cartForm") @Validated CartInfo cartForm)
-      if (target.getClass() == CartInfo.class) {
+    private EntityManager entityManager;
 
-      }
+    @InitBinder
+    public void myInitBinder(WebDataBinder dataBinder) {
+        Object target = dataBinder.getTarget();
+        if (target == null) {
+            return;
+        }
+        System.out.println("Target=" + target);
+        //TODO
+        // Case update quantity in cart
+        // (@ModelAttribute("cartForm") @Validated CartInfo cartForm)
+        if (target.getClass() == CartInfo.class) {
 
-      // Case save customer information.
-      // (@ModelAttribute @Validated CustomerInfo customerForm)
-      else if (target.getClass() == CustomerForm.class) {
-         dataBinder.setValidator(customerFormValidator);
-      }
+        }
 
-   }
+        // Case save customer information.
+        // (@ModelAttribute @Validated CustomerInfo customerForm)
+        else if (target.getClass() == CustomerForm.class) {
+            dataBinder.setValidator(customerFormValidator);
+        }
 
-   @RequestMapping("/")
-   public String home() {
-      return "index";
-   }
+    }
 
-   // Product List
+    @RequestMapping("/")
+    public String home() {
+        return "index";
+    }
 
-   @RequestMapping({"/buyProduct"})
-   public String listProductHandler(HttpServletRequest request,
-                                    @RequestParam(value = "id", defaultValue = "") Long id) {
+    // Product List
 
-      Wine wine = null;
-      if (id != null) {
-         wine = wineDao.findWine(id);
-      }
-      if (wine != null) {
+    @RequestMapping({"/buyProduct"})
+    public String listProductHandler(HttpServletRequest request,
+                                     @RequestParam(value = "id", defaultValue = "") Long id) {
 
-         //
-         CartInfo cartInfo = Utils.getCartInSession(request);
+        Wine wine = null;
+        if (id != null) {
+            wine = wineDao.findWine(id);
+        }
+        if (wine != null) {
 
-         WineInfo wineInfo = new WineInfo(wine);
+            //
+            CartInfo cartInfo = Utils.getCartInSession(request);
 
-         cartInfo.addProduct(wineInfo, 1);
-      }
+            WineInfo wineInfo = new WineInfo(wine);
 
-      return "redirect:/shoppingCart";
-   }
+            cartInfo.addProduct(wineInfo, 1);
+        }
 
-   @RequestMapping({"/shoppingCartRemoveProduct"})
-   public String removeProductHandler(HttpServletRequest request,
-                                      @RequestParam(value = "id", defaultValue = "") Long id) {
-      Wine product = null;
-      if (id != null) {
-         product = wineDao.findWine(id);
-      }
-      if (product != null) {
+        return "redirect:/shoppingCart";
+    }
 
-         CartInfo cartInfo = Utils.getCartInSession(request);
+    @RequestMapping({"/shoppingCartRemoveProduct"})
+    public String removeProductHandler(HttpServletRequest request,
+                                       @RequestParam(value = "id", defaultValue = "") Long id) {
+        Wine product = null;
+        if (id != null) {
+            product = wineDao.findWine(id);
+        }
+        if (product != null) {
 
-         WineInfo productInfo = new WineInfo(product);
+            CartInfo cartInfo = Utils.getCartInSession(request);
 
-         cartInfo.removeProduct(productInfo);
+            WineInfo productInfo = new WineInfo(product);
 
-      }
+            cartInfo.removeProduct(productInfo);
 
-      return "redirect:/shoppingCart";
-   }
+        }
 
-   // POST: Update quantity for product in cart
-   @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.POST)
-   public String shoppingCartUpdateQty(HttpServletRequest request, //
-                                       @ModelAttribute("cartForm") CartInfo cartForm) {
+        return "redirect:/shoppingCart";
+    }
 
-      CartInfo cartInfo = Utils.getCartInSession(request);
-      cartInfo.updateQuantity(cartForm);
+    // POST: Update quantity for product in cart
+    @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.POST)
+    public String shoppingCartUpdateQty(HttpServletRequest request, //
+                                        @ModelAttribute("cartForm") CartInfo cartForm) {
 
-      return "redirect:/shoppingCart";
-   }
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        cartInfo.updateQuantity(cartForm);
 
-   // GET: Show cart.
-   @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.GET)
-   public String shoppingCartHandler(HttpServletRequest request, Model model) {
-      CartInfo myCart = Utils.getCartInSession(request);
-      CartInfo cartInfo = Utils.getCartInSession(request);
+        return "redirect:/shoppingCart";
+    }
 
-      model.addAttribute("cartForm", cartInfo);
-      model.addAttribute("myCart", myCart);
-      return "shoppingCart";
-   }
+    // GET: Show cart.
+    @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.GET)
+    public String shoppingCartHandler(HttpServletRequest request, Model model) {
+        CartInfo myCart = Utils.getCartInSession(request);
+        CartInfo cartInfo = Utils.getCartInSession(request);
 
-   // GET: Enter customer information.
-   @RequestMapping(value = {"/shoppingCartCustomer"}, method = RequestMethod.GET)
-   public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
+        model.addAttribute("cartForm", cartInfo);
+        model.addAttribute("myCart", myCart);
+        return "shoppingCart";
+    }
 
-      CartInfo cartInfo = Utils.getCartInSession(request);
+    // GET: Enter customer information.
+    @RequestMapping(value = {"/shoppingCartCustomer"}, method = RequestMethod.GET)
+    public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
 
-      if (cartInfo.isEmpty()) {
+        CartInfo cartInfo = Utils.getCartInSession(request);
 
-         return "redirect:/shoppingCart";
-      }
-      CustomerInfo customerInfo = cartInfo.getCustomerInfo();
+        if (cartInfo.isEmpty()) {
 
-      CustomerForm customerForm = new CustomerForm(customerInfo);
+            return "redirect:/shoppingCart";
+        }
+        CustomerInfo customerInfo = cartInfo.getCustomerInfo();
 
-      model.addAttribute("customerForm", customerForm);
+        CustomerForm customerForm = new CustomerForm(customerInfo);
 
-      return "shoppingCartCustomer";
-   }
+        model.addAttribute("customerForm", customerForm);
 
-   // POST: Save customer information.
-   @RequestMapping(value = {"/shoppingCartCustomer"}, method = RequestMethod.POST)
-   public String shoppingCartCustomerSave(HttpServletRequest request, //
-                                          @ModelAttribute("customerForm") @Validated CustomerForm customerForm, //
-                                          BindingResult result) {
+        return "shoppingCartCustomer";
+    }
 
-      if (result.hasErrors()) {
-         customerForm.setValid(false);
-         // Forward to reenter customer info.
-         return "shoppingCartCustomer";
-      }
+    // POST: Save customer information.
+    @RequestMapping(value = {"/shoppingCartCustomer"}, method = RequestMethod.POST)
+    public String shoppingCartCustomerSave(HttpServletRequest request, //
+                                           @ModelAttribute("customerForm") @Validated CustomerForm customerForm, //
+                                           BindingResult result) {
 
-      customerForm.setValid(true);
-      CartInfo cartInfo = Utils.getCartInSession(request);
-      CustomerInfo customerInfo = new CustomerInfo(customerForm);
-      cartInfo.setCustomerInfo(customerInfo);
+        if (result.hasErrors()) {
+            customerForm.setValid(false);
+            // Forward to reenter customer info.
+            return "shoppingCartCustomer";
+        }
 
-      return "redirect:/shoppingCartConfirmation";
-   }
+        customerForm.setValid(true);
+        CartInfo cartInfo = Utils.getCartInSession(request);
+        CustomerInfo customerInfo = new CustomerInfo(customerForm);
+        cartInfo.setCustomerInfo(customerInfo);
 
-   // GET: Show information to confirm.
-   @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.GET)
-   public String shoppingCartConfirmationReview(HttpServletRequest request, Model model) {
-      CartInfo cartInfo = Utils.getCartInSession(request);
+        return "redirect:/shoppingCartConfirmation";
+    }
 
-      if (cartInfo == null || cartInfo.isEmpty()) {
+    // GET: Show information to confirm.
+    @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.GET)
+    public String shoppingCartConfirmationReview(HttpServletRequest request, Model model) {
+        CartInfo cartInfo = Utils.getCartInSession(request);
 
-         return "redirect:/shoppingCart";
-      } else if (!cartInfo.isValidCustomer()) {
+        if (cartInfo == null || cartInfo.isEmpty()) {
 
-         return "redirect:/shoppingCartCustomer";
-      }
-      model.addAttribute("myCart", cartInfo);
+            return "redirect:/shoppingCart";
+        } else if (!cartInfo.isValidCustomer()) {
 
-      return "shoppingCartConfirmation";
-   }
+            return "redirect:/shoppingCartCustomer";
+        }
+        model.addAttribute("myCart", cartInfo);
 
-   // POST: Submit Cart (Save)
-   @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.POST)
+        return "shoppingCartConfirmation";
+    }
 
-   public String shoppingCartConfirmationSave(HttpServletRequest request) {
-      CartInfo cartInfo = Utils.getCartInSession(request);
+    // POST: Submit Cart (Save)
+    @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.POST)
 
-      if (cartInfo.isEmpty()) {
+    public String shoppingCartConfirmationSave(HttpServletRequest request) {
+        CartInfo cartInfo = Utils.getCartInSession(request);
 
-         return "redirect:/shoppingCart";
-      } else if (!cartInfo.isValidCustomer()) {
+        if (cartInfo.isEmpty()) {
 
-         return "redirect:/shoppingCartCustomer";
-      }
-      try {
-         orderDAO.saveOrder(cartInfo);
-      } catch (Exception e) {
+            return "redirect:/shoppingCart";
+        } else if (!cartInfo.isValidCustomer()) {
 
-         return "shoppingCartConfirmation";
-      }
+            return "redirect:/shoppingCartCustomer";
+        }
+        try {
+            orderDAO.saveOrder(cartInfo);
+        } catch (Exception e) {
 
-      // Remove Cart from Session.
-      Utils.removeCartInSession(request);
+            return "shoppingCartConfirmation";
+        }
 
-      // Store last cart.
-      Utils.storeLastOrderedCartInSession(request, cartInfo);
+        // Remove Cart from Session.
+        Utils.removeCartInSession(request);
 
-      return "redirect:/shoppingCartFinalize";
-   }
+        // Store last cart.
+        Utils.storeLastOrderedCartInSession(request, cartInfo);
 
-   @RequestMapping(value = {"/shoppingCartFinalize"}, method = RequestMethod.GET)
-   public String shoppingCartFinalize(HttpServletRequest request, Model model) {
+        return "redirect:/shoppingCartFinalize";
+    }
 
-      CartInfo lastOrderedCart = Utils.getLastOrderedCartInSession(request);
+    @RequestMapping(value = {"/shoppingCartFinalize"}, method = RequestMethod.GET)
+    public String shoppingCartFinalize(HttpServletRequest request, Model model) {
 
-      if (lastOrderedCart == null) {
-         return "redirect:/shoppingCart";
-      }
-      model.addAttribute("lastOrderedCart", lastOrderedCart);
-      return "shoppingCartFinalize";
-   }
+        CartInfo lastOrderedCart = Utils.getLastOrderedCartInSession(request);
 
-   @RequestMapping(value = {"/productImage"}, method = RequestMethod.GET)
-   public void productImage(HttpServletRequest request, HttpServletResponse response,
-                            @RequestParam("id") Long id) throws IOException {
-      Wine wine = null;
-      if (id != null) {
-         wine = this.wineDao.findWine(id);
-      }
-      if (wine != null && wine.getImage() != null) {
-         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-         response.getOutputStream().write(wine.getImage());
-      }
-      response.getOutputStream().close();
-   }
+        if (lastOrderedCart == null) {
+            return "redirect:/shoppingCart";
+        }
+        model.addAttribute("lastOrderedCart", lastOrderedCart);
+        return "shoppingCartFinalize";
+    }
+
+    @RequestMapping(value = {"/productImage"}, method = RequestMethod.GET)
+    public void productImage(HttpServletRequest request, HttpServletResponse response,
+                             @RequestParam("id") Long id) throws IOException {
+        Wine wine = null;
+        if (id != null) {
+            wine = this.wineDao.findWine(id);
+        }
+        if (wine != null && wine.getImage() != null) {
+            response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+            response.getOutputStream().write(wine.getImage());
+        }
+        response.getOutputStream().close();
+    }
 
 
-   @RequestMapping(value = "/winelist", method = RequestMethod.GET)
-   public String showWineList(Model model){
-      model.addAttribute("wines", wineListService.findAll());
-      return "winelist";
-   }
+    @RequestMapping(value = "/winelist", method = RequestMethod.GET)
+    public String showWineList(Model model) {
+        model.addAttribute("wines", wineListService.findAll());
+        return "winelist";
+    }
 
-   @RequestMapping("/wine/{id}")
-   public String findWine(@PathVariable() Long id, Model model){
-      model.addAttribute("wine", wineDao.findWine(id));
-      return "wine";
-   }
+    @RequestMapping("/wine/{id}")
+    public String findWine(@PathVariable() Long id, Model model) {
+        model.addAttribute("wine", wineDao.findWine(id));
+        return "wine";
+    }
 
-   //TODO
+    @RequestMapping("/orderlist")
+    public String showOrderList(Model model) {
+        model.addAttribute("order", orderDAO.getAllOrders());
+        return "orderlist";
+    }
+
+    @RequestMapping({"/removeOrder={orderNum}"})
+    public String removeOrder(@PathVariable int orderNum) {
+        orderDAO.deleteOrderByNum(orderNum);
+        return "redirect:/orderlist";
+    }
+    //TODO
 
 /*   @RequestParam(value = "name", defaultValue = "") String likeName,
    @RequestParam(value = "page", defaultValue = "1") int page) {

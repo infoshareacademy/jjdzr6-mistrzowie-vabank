@@ -5,6 +5,7 @@ import com.infoshareacademy.mistrzowieVaBank.dto.*;
 import com.infoshareacademy.mistrzowieVaBank.entity.Order;
 import com.infoshareacademy.mistrzowieVaBank.entity.OrderDetail;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
+import com.infoshareacademy.mistrzowieVaBank.repository.OrderRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -12,6 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -19,12 +26,17 @@ import java.util.UUID;
 @Transactional
 @Repository
 public class OrderDao {
- 
+
     @Autowired
     private SessionFactory sessionFactory;
- 
+
+    @Autowired
+    private OrderRepository orderRepository;
     @Autowired
     private WineDao wineDao;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private int getMaxOrderNum() {
         String sql = "Select max(o.orderNum) from " + Order.class.getName() + " o ";
@@ -81,12 +93,18 @@ public class OrderDao {
     }
 
 
-    public Order findOrder(Long orderId) {
+    public Order findOrder(int orderId) {
         Session session = this.sessionFactory.getCurrentSession();
         return session.find(Order.class, orderId);
     }
 
-    public OrderInfo getOrderInfo(Long orderId) {
+    public Order findOrderByNum(int orderNum) {
+        Session session = this.sessionFactory.getCurrentSession();
+        return session.get(Order.class, orderNum);
+    }
+
+
+    public OrderInfo getOrderInfo(int orderId) {
         Order order = this.findOrder(orderId);
         if (order == null) {
             return null;
@@ -108,5 +126,21 @@ public class OrderDao {
 
         return query.getResultList();
     }
- 
+
+    public List<Order> getAllOrders() {
+        Session session = this.sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Order> cq = cb.createQuery(Order.class);
+        Root<Order> rootEntry = cq.from(Order.class);
+        CriteriaQuery<Order> all = cq.select(rootEntry);
+
+        TypedQuery<Order> allQuery = session.createQuery(all);
+        return allQuery.getResultList();
+    }
+
+    public void deleteOrderByNum(int orderNum) {
+        this.orderRepository.deleteOrderByNum(orderNum);
+    }
+
+
 }
