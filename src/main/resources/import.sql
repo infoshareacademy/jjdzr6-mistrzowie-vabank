@@ -24,6 +24,7 @@ CREATE TABLE orders (
                         customer_address VARCHAR(255) NOT NULL,
                         customer_email VARCHAR(128) NOT NULL,
                         customer_phone VARCHAR(128) NOT NULL,
+                        realized BOOLEAN NOT NULL,
                         CONSTRAINT pk_orders PRIMARY KEY (id)
 );
 
@@ -52,7 +53,7 @@ ALTER TABLE orders ADD CONSTRAINT uc_7a4d96dd783e6268bc9173d62 UNIQUE (order_num
 ALTER TABLE wine ADD CONSTRAINT uc_wine_name UNIQUE (name);
 
 
-INSERT INTO mistrzowieVaBank.orders (id, order_date, order_num, amount, customer_name, customer_address, customer_email, customer_phone) VALUES (1, '2022-10-10',1, 100, 'Jan', 'asdvvc', 'ann@example.com', 123456789);
+INSERT INTO mistrzowieVaBank.orders (id, order_date, order_num, amount, customer_name, customer_address, customer_email, customer_phone, realized) VALUES (1, '2022-10-10',1, 100, 'Jan', 'asdvvc', 'ann@example.com','728326048',false);
 
 
 INSERT INTO mistrzowieVaBank.wine (id, name, flavour, type, year, origin, price, quantity, spec, IMAGE, CREATE_DATE) VALUES (1, 'Château Rieussec Premiere Cru Classe Sauternes', 'Słodkie', 'Białe', 2014, 'Francja', 560, 10,'testowy opis', NULL,'2022-10-10');

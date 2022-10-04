@@ -270,6 +270,12 @@ public class MainController {
         orderDAO.deleteOrderByNum(orderNum);
         return "redirect:/orderlist";
     }
+    @RequestMapping({"/setrealized={orderNum}"})
+    public String setOrderAsRealized(@PathVariable int orderNum) {
+        orderDAO.setOrderAsRealized(orderNum);
+        return "redirect:/orderlist";
+    }
+
     //TODO
 
 /*   @RequestParam(value = "name", defaultValue = "") String likeName,

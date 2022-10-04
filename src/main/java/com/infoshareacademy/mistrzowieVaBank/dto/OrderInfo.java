@@ -17,16 +17,20 @@ public class OrderInfo {
     private String customerEmail;
     private String customerPhone;
 
+    private Boolean realized;
+
     private List<OrderDetailInfo> details;
 
     public OrderInfo() {
 
     }
 
+
+
     // Using for Hibernate Query.
     public OrderInfo(Long id, LocalDate orderDate, int orderNum, //
                      BigDecimal amount, String customerName, String customerAddress, //
-                     String customerEmail, String customerPhone) {
+                     String customerEmail, String customerPhone, Boolean realized) {
         this.id = id;
         this.orderDate = orderDate;
         this.orderNum = orderNum;
@@ -36,6 +40,8 @@ public class OrderInfo {
         this.customerAddress = customerAddress;
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
+        this.realized = realized;
+
     }
 
     public Long getId() {
@@ -108,6 +114,14 @@ public class OrderInfo {
 
     public void setDetails(List<OrderDetailInfo> details) {
         this.details = details;
+    }
+
+    public Boolean getRealized() {
+        return realized;
+    }
+
+    public void setRealized(Boolean realized) {
+        this.realized = realized;
     }
  
 }

@@ -38,6 +38,9 @@ public class Order implements Serializable {
     @Column(name = "Customer_Phone", length = 128, nullable = false)
     private String customerPhone;
 
+    @Column(name = "Realized", length = 128, nullable = false)
+    private Boolean realized;
+
     public Long getId() {
         return id;
     }
@@ -100,6 +103,14 @@ public class Order implements Serializable {
 
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
+    }
+
+    public Boolean getRealized() {
+        return realized;
+    }
+
+    public void setRealized(Boolean realized) {
+        this.realized = realized;
     }
 
 }

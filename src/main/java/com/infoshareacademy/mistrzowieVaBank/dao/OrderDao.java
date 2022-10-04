@@ -60,6 +60,7 @@ public class OrderDao {
         order.setOrderNum(orderNum);
         order.setOrderDate(LocalDate.now());
         order.setAmount(cartInfo.getAmountTotal());
+        order.setRealized(false);
 
         CustomerInfo customerInfo = cartInfo.getCustomerInfo();
         order.setCustomerName(customerInfo.getName());
@@ -111,7 +112,7 @@ public class OrderDao {
         }
         return new OrderInfo(order.getId(), order.getOrderDate(), //
                 order.getOrderNum(), order.getAmount(), order.getCustomerName(), //
-                order.getCustomerAddress(), order.getCustomerEmail(), order.getCustomerPhone());
+                order.getCustomerAddress(), order.getCustomerEmail(), order.getCustomerPhone(), order.getRealized());
     }
 
     public List<OrderDetailInfo> listOrderDetailInfos(Long orderId) {
@@ -142,5 +143,8 @@ public class OrderDao {
         this.orderRepository.deleteOrderByNum(orderNum);
     }
 
+    public void setOrderAsRealized(int orderNum) {
+        this.orderRepository.setOrderAsRealized(orderNum);
+    }
 
 }

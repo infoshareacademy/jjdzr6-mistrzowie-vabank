@@ -10,6 +10,7 @@ public class CartInfo {
 
     private CustomerInfo customerInfo;
 
+
     private final List<CartLineInfo> cartLines = new ArrayList<CartLineInfo>();
 
     public CartInfo() {
