@@ -10,7 +10,11 @@ public class CartLineInfo {
     public CartLineInfo() {
         this.quantity = 0;
     }
-  
+
+    public void setWineInfo(WineInfo wineInfo) {
+        this.wineInfo = wineInfo;
+    }
+
     public WineInfo getWineInfo() {
         return wineInfo;
     }
