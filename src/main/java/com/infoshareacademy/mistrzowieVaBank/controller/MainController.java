@@ -267,7 +267,7 @@ public class MainController {
 
     @RequestMapping({"/removeOrder={orderNum}"})
     public String removeOrder(@PathVariable int orderNum) {
-        orderDAO.deleteOrderByNum(orderNum);
+        orderDAO.deleteOrderByOrderNum(orderNum);
         return "redirect:/orderlist";
     }
     @RequestMapping({"/setrealized={orderNum}"})

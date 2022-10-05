@@ -139,8 +139,8 @@ public class OrderDao {
         return allQuery.getResultList();
     }
 
-    public void deleteOrderByNum(int orderNum) {
-        this.orderRepository.deleteOrderByNum(orderNum);
+    public void deleteOrderByOrderNum(int orderNum) {
+        this.orderRepository.deleteOrderByOrderNum(orderNum);
     }
 
     public void setOrderAsRealized(int orderNum) {

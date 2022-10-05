@@ -9,12 +9,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Modifying
-    @Query("delete from Order o where o.orderNum = :orderNum ")
-    void deleteOrderByNum(int orderNum);
+    void deleteOrderByOrderNum(int orderNum);
 
     @Modifying
     @Query("update Order set realized = 1 where orderNum= :orderNum")
     void setOrderAsRealized(int orderNum);
+
 }
 
