@@ -8,6 +8,7 @@ import com.infoshareacademy.mistrzowieVaBank.dto.CustomerInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.CustomerForm;
+import com.infoshareacademy.mistrzowieVaBank.repository.OrderRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
@@ -20,7 +21,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -36,12 +36,13 @@ public class MainController {
     private WineDao wineDao;
 
     @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
     private CustomerFormValidator customerFormValidator;
 
     @Autowired
     private WineListService wineListService;
-
-    private EntityManager entityManager;
 
     @InitBinder
     public void myInitBinder(WebDataBinder dataBinder) {
@@ -54,7 +55,6 @@ public class MainController {
         // Case update quantity in cart
         // (@ModelAttribute("cartForm") @Validated CartInfo cartForm)
         if (target.getClass() == CartInfo.class) {
-
         }
 
         // Case save customer information.
@@ -270,10 +270,17 @@ public class MainController {
         orderDAO.deleteOrderByOrderNum(orderNum);
         return "redirect:/orderlist";
     }
+
     @RequestMapping({"/setrealized={orderNum}"})
     public String setOrderAsRealized(@PathVariable int orderNum) {
         orderDAO.setOrderAsRealized(orderNum);
         return "redirect:/orderlist";
+    }
+
+    @RequestMapping({"/order={orderNum}"})
+    public String singleOrderPage(@PathVariable int orderNum, Model model) {
+        model.addAttribute("order", orderDAO.findAllByOrderNum(orderNum));
+        return "order";
     }
 
     //TODO

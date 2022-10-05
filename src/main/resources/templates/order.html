@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header" |>
+
+</head>
+
+<body>
+<div th:replace="common/header :: navbar" |>
+</div>
+<br><br><br><br><br><br>
+<!--TODO-->
+<!--<h1 th:text="'Order nr' + ${order.orderNum} + 'details'"></h1>-->
+
+<p><b>Client details</b></p>
+<span th:each="order,iter : ${order}">
+<p th:text="'Name: ' + ${order.customerName}"></p>
+<p th:text="'Adress: ' + ${order.customerAddress}"></p>
+<p th:text="'Email ' + ${order.customerEmail}"></p>
+<p th:text="'Phone number: ' + ${order.customerPhone}"></p>
+
+
+<p><b>Order details</b></p>
+<p th:text="'Order number: ' + ${order.orderNum}"></p>
+<p th:text="'Amount ' + ${order.amount} + '$'"></p>
+<a th:href="@{|/orderlist|}" class="btn btn-link" ><button type="button" class="btn btn-danger">Return</button></a>
+</span>
+</body>
+<div th:replace="common/header :: footer" |>
+</div>
+</html>

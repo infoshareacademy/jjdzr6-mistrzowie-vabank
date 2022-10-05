@@ -99,11 +99,6 @@ public class OrderDao {
         return session.find(Order.class, orderId);
     }
 
-    public Order findOrderByNum(int orderNum) {
-        Session session = this.sessionFactory.getCurrentSession();
-        return session.get(Order.class, orderNum);
-    }
-
 
     public OrderInfo getOrderInfo(int orderId) {
         Order order = this.findOrder(orderId);
@@ -145,6 +140,11 @@ public class OrderDao {
 
     public void setOrderAsRealized(int orderNum) {
         this.orderRepository.setOrderAsRealized(orderNum);
+    }
+
+    public List<Order> findAllByOrderNum(int orderNum) {
+        List<Order> orders = orderRepository.findAllByOrderNum(orderNum);
+        return orders;
     }
 
 }

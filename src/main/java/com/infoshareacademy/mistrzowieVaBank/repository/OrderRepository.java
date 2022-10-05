@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
@@ -14,6 +16,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Modifying
     @Query("update Order set realized = 1 where orderNum= :orderNum")
     void setOrderAsRealized(int orderNum);
+
+    List<Order> findAllByOrderNum(int order);
 
 }
 
