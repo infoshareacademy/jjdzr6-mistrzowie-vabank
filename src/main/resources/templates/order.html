@@ -22,7 +22,8 @@
 <p><b>Order details</b></p>
 <p th:text="'Order number: ' + ${order.orderNum}"></p>
 <p th:text="'Amount ' + ${order.amount} + '$'"></p>
-<a th:href="@{|/orderlist|}" class="btn btn-link" ><button type="button" class="btn btn-danger">Return</button></a>
+<a th:href="@{|/orderlist|}" class="btn btn-link" ><button type="button" class="btn btn-info">Return</button></a>
+<a th:href="@{|/setrealized=${order.orderNum}|}" class="btn btn-link" ><button type="button" class="btn btn-danger">Set as realized</button></a>
 </span>
 </body>
 <div th:replace="common/header :: footer" |>
