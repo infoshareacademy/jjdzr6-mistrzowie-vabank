@@ -8,7 +8,7 @@ import com.infoshareacademy.mistrzowieVaBank.dto.CustomerInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.CustomerForm;
-import com.infoshareacademy.mistrzowieVaBank.repository.OrderRepository;
+import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
@@ -34,9 +35,6 @@ public class MainController {
 
     @Autowired
     private WineDao wineDao;
-
-    @Autowired
-    private OrderRepository orderRepository;
 
     @Autowired
     private CustomerFormValidator customerFormValidator;
@@ -281,6 +279,25 @@ public class MainController {
     public String singleOrderPage(@PathVariable int orderNum, Model model) {
         model.addAttribute("order", orderDAO.findAllByOrderNum(orderNum));
         return "order";
+    }
+
+    // GET: Enter customer information.
+    @RequestMapping(value = {"/newwineform"}, method = RequestMethod.GET)
+    public String NewWineForm(NewWineInfo newWineInfo, Model model) {
+
+        model.addAttribute("newwineform", newWineInfo);
+
+        return "newWineForm";
+    }
+
+    @RequestMapping(value = {"/newwineformconfirmation"}, method = RequestMethod.POST)
+    public String newWineFormConfirmation(@Valid @ModelAttribute("newwineform") NewWineInfo newWineInfo, BindingResult bindingResult) {
+            if(bindingResult.hasErrors()){
+                return "newWineForm";
+            } else {
+                wineDao.saveNewWine(newWineInfo);
+                return "redirect:/winelist";
+            }
     }
 
     //TODO

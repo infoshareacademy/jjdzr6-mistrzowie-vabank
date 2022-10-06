@@ -1,8 +1,10 @@
 package com.infoshareacademy.mistrzowieVaBank.dao;
 
-import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
+import com.infoshareacademy.mistrzowieVaBank.dto.*;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
+import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.form.WineForm;
+import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -20,6 +22,9 @@ public class WineDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private WineRepository wineRepository;
 
     public Wine findWine(Long id) {
         try {
@@ -78,6 +83,23 @@ public class WineDao {
         }
         // If error in DB, Exceptions will be thrown out immediately
         session.flush();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public void saveNewWine(NewWineInfo newWineInfo) {
+
+        Wine wine = new Wine();
+        wine.setName(newWineInfo.getName());
+        wine.setFlavour(newWineInfo.getFlavour());
+        wine.setType(newWineInfo.getType());
+        wine.setYear(newWineInfo.getYear());
+        wine.setOrigin(newWineInfo.getOrigin());
+        wine.setPrice(newWineInfo.getPrice());
+        wine.setQuantity(newWineInfo.getQuantity());
+        wine.setSpec(newWineInfo.getSpec());
+        wine.setCreateDate(LocalDate.now());
+
+        wineRepository.save(wine);
     }
 
 }

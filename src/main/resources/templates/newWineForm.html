@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"|>
+
+</head>
+
+<body>
+<div th:replace="common/header :: navbar"|>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+
+            <div class="bd-example">
+                <h3>New wine form</h3>
+                <form method="POST" th:object = "${newwineform}" th:action="@{/newwineformconfirmation}">
+                    <div class="form-group">
+                        <label for="name">Wine name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="flavour">Flavour</label>
+                        <input type="text" class="form-control" id="flavour" th:field="*{flavour}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('flavour')}" th:errors="*{flavour}">..</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Wine type</label>
+                        <input type="text" class="form-control" id="type" th:field="*{type}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('type')}" th:errors="*{type}">..</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Year</label>
+                        <input type="text" class="form-control" id="year" th:field="*{year}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('year')}" th:errors="*{year}">..</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="origin">Origin</label>
+                        <input type="text" class="form-control" id="origin" th:field="*{origin}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('origin')}" th:errors="*{origin}">..</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control" id="price" th:field="*{price}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('price')}" th:errors="*{price}">..</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text" class="form-control" id="quantity" th:field="*{quantity}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">..</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spec">Spec</label>
+                        <input type="text" class="form-control" id="spec" th:field="*{spec}">
+                        <span class="error-message"
+                              th:if="${#fields.hasErrors('spec')}" th:errors="*{spec}">..</span>
+                    </div>
+
+                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                    <input type="reset" class="btn btn-outline-primary"
+                           value="Reset" />
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ------------------------------container end---------------------------------- -->
+
+
+</body>
+<div th:replace="common/header :: footer"|>
+</div>
+</html>
