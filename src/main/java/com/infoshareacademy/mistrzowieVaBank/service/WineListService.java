@@ -1,8 +1,12 @@
 package com.infoshareacademy.mistrzowieVaBank.service;
 
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
+import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,9 @@ public class WineListService {
 
     @Autowired
     JdbcTemplate template;
+
+    @Autowired
+    WineRepository wineRepository;
 
     public List<Wine> findAll() {
         String sql = "select * from wine";
@@ -37,5 +44,10 @@ public class WineListService {
         };
 
         return template.query(sql, rm);
+    }
+
+    public Page<Wine> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.wineRepository.findAll(pageable);
     }
 }

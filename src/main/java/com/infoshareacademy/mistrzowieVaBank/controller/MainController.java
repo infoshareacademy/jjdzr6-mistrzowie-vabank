@@ -5,14 +5,15 @@ import com.infoshareacademy.mistrzowieVaBank.dao.OrderDao;
 import com.infoshareacademy.mistrzowieVaBank.dao.WineDao;
 import com.infoshareacademy.mistrzowieVaBank.dto.CartInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.CustomerInfo;
+import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.CustomerForm;
-import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @Transactional
@@ -41,6 +43,9 @@ public class MainController {
 
     @Autowired
     private WineListService wineListService;
+
+    private final int pageSize = 5;
+
 
     @InitBinder
     public void myInitBinder(WebDataBinder dataBinder) {
@@ -247,7 +252,21 @@ public class MainController {
 
     @RequestMapping(value = "/winelist", method = RequestMethod.GET)
     public String showWineList(Model model) {
-        model.addAttribute("wines", wineListService.findAll());
+        model.addAttribute("wines", wineListService.findPaginated(1, pageSize));
+        return "winelist";
+    }
+
+    @GetMapping("/winelist/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+
+        Page<Wine> page = wineListService.findPaginated(pageNo, pageSize);
+        List<Wine> wineList = page.getContent();
+        model.addAttribute("prevPage", pageNo - 1);
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("nextPage", pageNo + 1);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("wines", wineList);
         return "winelist";
     }
 
@@ -281,33 +300,31 @@ public class MainController {
         return "order";
     }
 
-    // GET: Enter customer information.
     @RequestMapping(value = {"/newwineform"}, method = RequestMethod.GET)
     public String NewWineForm(NewWineInfo newWineInfo, Model model) {
 
         model.addAttribute("newwineform", newWineInfo);
-
         return "newWineForm";
     }
 
+
     @RequestMapping(value = {"/newwineformconfirmation"}, method = RequestMethod.POST)
     public String newWineFormConfirmation(@Valid @ModelAttribute("newwineform") NewWineInfo newWineInfo, BindingResult bindingResult) {
-            if(bindingResult.hasErrors()){
-                return "newWineForm";
-            } else {
+        //TODO - do dokonczenia walidacja - robi za kazdym razem nowy ID pomimo nie przejscia walidacji :(
+        if (bindingResult.hasErrors()) {
+            return "newWineForm";
+        } else {
+            //wineDao wyciagnac nazwe i sprawdzic + dodac do bindingresults / if / add error bindingresults / poczytac jak dodac blad
+            //zobaczyc Validatora
+
+
+            try {
                 wineDao.saveNewWine(newWineInfo);
                 return "redirect:/winelist";
+            } catch (Exception e) {
+                return "newWineForm";
             }
+        }
     }
-
-    //TODO
-
-/*   @RequestParam(value = "name", defaultValue = "") String likeName,
-   @RequestParam(value = "page", defaultValue = "1") int page) {
-      final int maxResult = 8;
-      final int maxNavigationPage = 10;
-
-      PaginationResult<WineInfo> result = wineDao.queryProducts(page, //
-              maxResult, maxNavigationPage, likeName);*/
 }
 
