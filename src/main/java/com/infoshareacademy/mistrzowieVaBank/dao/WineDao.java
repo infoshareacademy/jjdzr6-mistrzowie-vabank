@@ -1,8 +1,8 @@
 package com.infoshareacademy.mistrzowieVaBank.dao;
 
-import com.infoshareacademy.mistrzowieVaBank.dto.*;
-import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
+import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
+import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.WineForm;
 import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import org.hibernate.Session;
@@ -12,9 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -25,6 +31,9 @@ public class WineDao {
 
     @Autowired
     private WineRepository wineRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public Wine findWine(Long id) {
         try {
@@ -89,7 +98,14 @@ public class WineDao {
     public void saveNewWine(NewWineInfo newWineInfo) {
 
         Wine wine = new Wine();
-        wine.setName(newWineInfo.getName());
+        String wineName = newWineInfo.getName();
+
+        if (findUniqueNames(wineName) != null) {
+            wine.setName(newWineInfo.getName());
+        } else {
+            wine.setName("");
+
+        }
         wine.setFlavour(newWineInfo.getFlavour());
         wine.setType(newWineInfo.getType());
         wine.setYear(newWineInfo.getYear());
@@ -102,4 +118,11 @@ public class WineDao {
         wineRepository.save(wine);
     }
 
+    public List<Wine> findUniqueNames(String name) {
+
+        TypedQuery<Wine> query = entityManager.createQuery("select distinct e from Wine e where e.name = :name", Wine.class);
+        query.setParameter("name", name);
+        return new ArrayList<>(query.getResultList());
+
+    }
 }

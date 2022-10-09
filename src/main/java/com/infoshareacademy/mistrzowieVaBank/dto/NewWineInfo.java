@@ -2,6 +2,7 @@ package com.infoshareacademy.mistrzowieVaBank.dto;
 
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 public class NewWineInfo {
 
     @NotBlank(message = "Name cannot be empty")
+    @Column(unique = true)
     private String name;
     @NotBlank(message = "Flavour cannot be empty")
     private String flavour;
@@ -107,5 +109,12 @@ public class NewWineInfo {
 
     public void setSpec(String spec) {
         this.spec = spec;
+    }
+
+    @Override
+    public String toString() {
+        return "NewWineInfo{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Wine {
 
-
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;

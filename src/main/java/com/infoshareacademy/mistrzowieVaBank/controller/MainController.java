@@ -9,6 +9,7 @@ import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.form.CustomerForm;
+import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +45,9 @@ public class MainController {
 
     @Autowired
     private WineListService wineListService;
+
+    @Autowired
+    private WineRepository wineRepository;
 
     private final int pageSize = 5;
 
@@ -308,23 +313,27 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = {"/newwineformconfirmation"}, method = RequestMethod.POST)
-    public String newWineFormConfirmation(@Valid @ModelAttribute("newwineform") NewWineInfo newWineInfo, BindingResult bindingResult) {
+    @RequestMapping(value = {"/newwineform"}, method = RequestMethod.POST)
+    public String newWineForm(@Valid @ModelAttribute("newwineform") NewWineInfo newWineInfo, BindingResult bindingResult) {
         //TODO - do dokonczenia walidacja - robi za kazdym razem nowy ID pomimo nie przejscia walidacji :(
         if (bindingResult.hasErrors()) {
             return "newWineForm";
         } else {
-            //wineDao wyciagnac nazwe i sprawdzic + dodac do bindingresults / if / add error bindingresults / poczytac jak dodac blad
-            //zobaczyc Validatora
-
-
-            try {
-                wineDao.saveNewWine(newWineInfo);
-                return "redirect:/winelist";
-            } catch (Exception e) {
+            if (wineListService.ifExist(newWineInfo.getName())) {
+                bindingResult.rejectValue("name", "error.name", "Name is already taken. Choose another one.");
                 return "newWineForm";
+            } else {
+                    wineDao.saveNewWine(newWineInfo);
+                    return "redirect:/winelist/page/1";
             }
+
+//wineDao wyciagnac nazwe i sprawdzic + dodac do bindingresults / if / add error bindingresults / poczytac jak dodac blad
+            //zobaczyc Validatora
+           /* if(wineRepository.findWineByName(newWineInfo.getName()) != null){
+                ObjectError error = new ObjectError("name_use","Name is already used, try other name.");
+                bindingResult.addError(error);*/
         }
     }
 }
+
 

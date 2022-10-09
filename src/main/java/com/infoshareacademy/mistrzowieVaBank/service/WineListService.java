@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @NoArgsConstructor
 public class WineListService {
@@ -49,5 +51,10 @@ public class WineListService {
     public Page<Wine> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return this.wineRepository.findAll(pageable);
+    }
+
+    public Boolean ifExist(String name){
+        Wine wine = wineRepository.findExistByName(name);
+        return wine != null;
     }
 }

@@ -14,12 +14,13 @@
 
             <div class="bd-example">
                 <h3>New wine form</h3>
-                <form method="POST" th:object = "${newwineform}" th:action="@{/newwineformconfirmation}">
+                <form method="POST" th:object = "${newwineform}" th:action="@{/newwineform}">
                     <div class="form-group">
                         <label for="name">Wine name</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name">
                         <span class="error-message"
                               th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
+
                     </div>
 
                     <div class="form-group">
@@ -68,6 +69,11 @@
                         <input type="text" class="form-control" id="spec" th:field="*{spec}">
                         <span class="error-message"
                               th:if="${#fields.hasErrors('spec')}" th:errors="*{spec}">..</span>
+                    </div>
+
+                    <div th:if="${#fields.hasErrors('global')}">
+                        <h3>Global errors:</h3>
+                        <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
                     </div>
 
                     <input type="submit" value="Submit" class="btn btn-primary"/>

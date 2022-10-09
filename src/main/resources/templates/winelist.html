@@ -23,8 +23,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="wine : ${wines}">
-        <td th:text="${wine.id}"></td>
+    <tr th:each="wine, iterStat : ${wines}">
+        <td th:text="${iterStat.count}"></td>
         <td th:text="${wine.name}"></td>
         <td th:text="${wine.flavour}"></td>
         <td th:text="${wine.price}"></td>
