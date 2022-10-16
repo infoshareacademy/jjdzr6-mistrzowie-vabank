@@ -11,20 +11,20 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Nazwa wina</th>
-        <th scope="col">Smak</th>
-        <th scope="col">Cena</th>
-        <th scope="col">Rok</th>
-        <th scope="col">Pochodzenie</th>
-        <th scope="col">Typ</th>
-        <th scope="col">Ilość</th>
+        <th scope="col"><a th:style="${sortField == 'name' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Nazwa wina</a></th>
+        <th scope="col"><a th:style="${sortField == 'flavour' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=flavour&sortDir=' + ${reverseSortDir}}">Smak</a></th>
+        <th scope="col"><a th:style="${sortField == 'price' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">Cena</a></th>
+        <th scope="col"><a th:style="${sortField == 'year' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=year&sortDir=' + ${reverseSortDir}}">Rok</a></th>
+        <th scope="col"><a th:style="${sortField == 'origin' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=origin&sortDir=' + ${reverseSortDir}}">Pochodzenie</a></th>
+        <th scope="col"><a th:style="${sortField == 'type' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir}}">Typ</a></th>
+        <th scope="col"><a th:style="${sortField == 'quantity' ? 'color: red' : ''}" th:href="@{'/winelist/page/' + ${currentPage} + '?sortField=quantity&sortDir=' + ${reverseSortDir}}">Ilość</a></th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="wine, iterStat : ${wines}">
-        <td th:text="${iterStat.count}"></td>
+        <td th:text="${iterStat.count + (currentPage - 1) * 5}"></td>
         <td th:text="${wine.name}"></td>
         <td th:text="${wine.flavour}"></td>
         <td th:text="${wine.price}"></td>

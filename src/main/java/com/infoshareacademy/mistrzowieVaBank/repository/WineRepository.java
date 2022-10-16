@@ -14,4 +14,6 @@ public interface WineRepository extends JpaRepository<Wine, Long> {
     @Query("select a from Wine a where a.name = :name")
     Wine findExistByName(String name);
 
+
+
 }

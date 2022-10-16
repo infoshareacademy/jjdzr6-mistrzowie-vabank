@@ -19,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -46,10 +45,7 @@ public class MainController {
     @Autowired
     private WineListService wineListService;
 
-    @Autowired
-    private WineRepository wineRepository;
-
-    private final int pageSize = 5;
+    private static final int pageSize = 5;
 
 
     @InitBinder
@@ -257,21 +253,38 @@ public class MainController {
 
     @RequestMapping(value = "/winelist", method = RequestMethod.GET)
     public String showWineList(Model model) {
-        model.addAttribute("wines", wineListService.findPaginated(1, pageSize));
+        model.addAttribute("wines", wineListService.findPaginated(1, pageSize, null, null));
         return "winelist";
     }
 
     @GetMapping("/winelist/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model,
+                                @RequestParam(value = "sortField", required = false) String sortField,
+                                @RequestParam(value = "sortDir", required = false) String sortDir) {
 
-        Page<Wine> page = wineListService.findPaginated(pageNo, pageSize);
+        if(sortField == null){
+            sortField = "name";
+        }
+
+        if(sortDir == null){
+            sortDir = "asc";
+        }
+
+        Page<Wine> page = wineListService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<Wine> wineList = page.getContent();
+
         model.addAttribute("prevPage", pageNo - 1);
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("nextPage", pageNo + 1);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("wines", wineList);
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+
         return "winelist";
     }
 
@@ -323,8 +336,8 @@ public class MainController {
                 bindingResult.rejectValue("name", "error.name", "Name is already taken. Choose another one.");
                 return "newWineForm";
             } else {
-                    wineDao.saveNewWine(newWineInfo);
-                    return "redirect:/winelist/page/1";
+                wineDao.saveNewWine(newWineInfo);
+                return "redirect:/winelist/page/1";
             }
 
 //wineDao wyciagnac nazwe i sprawdzic + dodac do bindingresults / if / add error bindingresults / poczytac jak dodac blad

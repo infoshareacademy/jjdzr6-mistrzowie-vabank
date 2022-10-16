@@ -13,9 +13,6 @@ public class CartInfo {
 
     private final List<CartLineInfo> cartLines = new ArrayList<CartLineInfo>();
 
-    public CartInfo() {
-
-    }
 
     public int getOrderNum() {
         return orderNum;
@@ -63,9 +60,6 @@ public class CartInfo {
         }
     }
 
-    public void validate() {
-
-    }
 
     public void updateProduct(Long id, int quantity) {
         CartLineInfo line = this.findLineById(id);
