@@ -24,7 +24,6 @@ public class Wine {
     private String origin;
     private BigDecimal price;
     private int quantity;
-
     @Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
     private byte[] image;

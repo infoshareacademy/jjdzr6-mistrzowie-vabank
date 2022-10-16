@@ -114,6 +114,7 @@ public class WineDao {
         wine.setQuantity(newWineInfo.getQuantity());
         wine.setSpec(newWineInfo.getSpec());
         wine.setCreateDate(LocalDate.now());
+        wine.setImage(newWineInfo.getFile());
 
         wineRepository.save(wine);
     }

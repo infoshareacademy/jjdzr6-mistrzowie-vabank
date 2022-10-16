@@ -3,6 +3,7 @@ package com.infoshareacademy.mistrzowieVaBank.dto;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.Lob;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -33,19 +34,21 @@ public class NewWineInfo {
     @NotBlank(message = "Specification cannot be empty")
     private String spec;
 
+    @Column(name = "file")
+    @Lob
+    private byte[] file;
 
-    public NewWineInfo(NewWineInfo newWineInfo) {
-
-        this.name = newWineInfo.getName();
-        this.flavour = newWineInfo.getFlavour();
-        this.type = newWineInfo.getType();
-        this.year = newWineInfo.getYear();
-        this.origin = newWineInfo.getOrigin();
-        this.price = newWineInfo.getPrice();
-        this.quantity = newWineInfo.getQuantity();
-        this.spec = newWineInfo.getSpec();
+    public NewWineInfo(String name, String flavour, String type, int year, String origin, BigDecimal price, int quantity, String spec, byte[] file) {
+        this.name = name;
+        this.flavour = flavour;
+        this.type = type;
+        this.year = year;
+        this.origin = origin;
+        this.price = price;
+        this.quantity = quantity;
+        this.spec = spec;
+        this.file = file;
     }
-
 
     public String getName() {
         return name;
@@ -109,6 +112,14 @@ public class NewWineInfo {
 
     public void setSpec(String spec) {
         this.spec = spec;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 
     @Override

@@ -22,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -327,8 +328,10 @@ public class MainController {
 
 
     @RequestMapping(value = {"/newwineform"}, method = RequestMethod.POST)
-    public String newWineForm(@Valid @ModelAttribute("newwineform") NewWineInfo newWineInfo, BindingResult bindingResult) {
-        //TODO - do dokonczenia walidacja - robi za kazdym razem nowy ID pomimo nie przejscia walidacji :(
+    public String newWineForm(@Valid @ModelAttribute("newwineform") NewWineInfo newWineInfo, BindingResult bindingResult,
+                              @RequestParam(value = "image", required = false) MultipartFile multipartFile) throws IOException {
+
+
         if (bindingResult.hasErrors()) {
             return "newWineForm";
         } else {
@@ -336,6 +339,9 @@ public class MainController {
                 bindingResult.rejectValue("name", "error.name", "Name is already taken. Choose another one.");
                 return "newWineForm";
             } else {
+                if(multipartFile != null){
+                    newWineInfo.setFile(multipartFile.getBytes());
+                }
                 wineDao.saveNewWine(newWineInfo);
                 return "redirect:/winelist/page/1";
             }
@@ -347,6 +353,8 @@ public class MainController {
                 bindingResult.addError(error);*/
         }
     }
+
+
 }
 
 
