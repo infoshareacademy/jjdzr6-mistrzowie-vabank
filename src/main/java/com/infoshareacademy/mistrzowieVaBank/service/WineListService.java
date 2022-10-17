@@ -40,7 +40,8 @@ public class WineListService {
                         result.getString("type"),
                         result.getInt("year"),
                         result.getInt("quantity"),
-                        result.getString("spec"));
+                        result.getString("spec"),
+                        result.getBytes("image"));
 
                 return wine;
             }

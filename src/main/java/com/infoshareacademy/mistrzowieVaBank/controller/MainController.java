@@ -13,6 +13,7 @@ import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import com.infoshareacademy.mistrzowieVaBank.validator.CustomerFormValidator;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Controller
@@ -45,6 +48,9 @@ public class MainController {
 
     @Autowired
     private WineListService wineListService;
+
+    @Autowired
+    private WineRepository wineRepository;
 
     private static final int pageSize = 5;
 
@@ -263,11 +269,11 @@ public class MainController {
                                 @RequestParam(value = "sortField", required = false) String sortField,
                                 @RequestParam(value = "sortDir", required = false) String sortDir) {
 
-        if(sortField == null){
+        if (sortField == null) {
             sortField = "name";
         }
 
-        if(sortDir == null){
+        if (sortDir == null) {
             sortDir = "asc";
         }
 
@@ -339,7 +345,7 @@ public class MainController {
                 bindingResult.rejectValue("name", "error.name", "Name is already taken. Choose another one.");
                 return "newWineForm";
             } else {
-                if(multipartFile != null){
+                if (multipartFile != null) {
                     newWineInfo.setFile(multipartFile.getBytes());
                 }
                 wineDao.saveNewWine(newWineInfo);
@@ -354,7 +360,17 @@ public class MainController {
         }
     }
 
+    @GetMapping("/winelist/image/{id}")
+    public void showProductImage(@PathVariable Long id,
+                                 HttpServletResponse response) throws IOException {
+        response.setContentType("image/jpeg/png");
 
+        Wine find = wineDao.findWine(id);
+
+            InputStream is = new ByteArrayInputStream(find.getImage());
+            IOUtils.copy(is, response.getOutputStream());
+
+    }
 }
 
 

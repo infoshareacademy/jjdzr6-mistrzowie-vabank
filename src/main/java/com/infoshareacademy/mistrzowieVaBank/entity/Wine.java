@@ -12,14 +12,13 @@ import java.time.LocalDate;
 public class Wine {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String name;
     private String flavour;
     private String type;
     private int year;
-
     private String spec;
     private String origin;
     private BigDecimal price;
@@ -31,7 +30,7 @@ public class Wine {
     @Column(name = "Create_Date", nullable = false)
     private LocalDate createDate;
 
-    public Wine(long id, String flavour, String name, String origin, BigDecimal price, String type, int year, int quantity, String spec) {
+    public Wine(long id, String flavour, String name, String origin, BigDecimal price, String type, int year, int quantity, String spec, byte[] image) {
         this.id = id;
         this.name = name;
         this.flavour = flavour;
@@ -41,7 +40,9 @@ public class Wine {
         this.price = price;
         this.quantity = quantity;
         this.spec = spec;
+        this.image = image;
     }
+
 
     public Long getId() {
         return id;
@@ -131,3 +132,5 @@ public class Wine {
         this.spec = spec;
     }
 }
+
+

@@ -11,6 +11,8 @@ public class WineInfo {
     private BigDecimal price;
     private String spec;
 
+    private byte[] image;
+
     public WineInfo() {
     }
 
@@ -19,6 +21,7 @@ public class WineInfo {
         this.name = wine.getName();
         this.price = wine.getPrice();
         this.spec = wine.getSpec();
+        this.image = wine.getImage();
     }
 
 
@@ -60,4 +63,13 @@ public class WineInfo {
     public void setSpec(String spec) {
         this.spec = spec;
     }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
 }
