@@ -52,7 +52,7 @@ public class MainController {
     @Autowired
     private WineRepository wineRepository;
 
-    private static final int pageSize = 5;
+    private static final int pageSize = 10;
 
 
     @InitBinder
