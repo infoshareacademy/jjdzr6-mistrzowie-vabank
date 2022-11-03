@@ -1,45 +1,48 @@
-package com.infoshareacademy.mistrzowieVaBank.entity;
+package com.infoshareacademy.mistrzowieVaBank.dto;
 
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+ 
+public class OrderInfo {
 
-@Entity
-@Table(name = "orders", //
-        uniqueConstraints = {@UniqueConstraint(columnNames = "Order_Num")})
-public class Order implements Serializable {
-
-    private static final long serialVersionUID = -2576670215015463100L;
-
-    @Id
-    @Column(name = "ID", nullable = false)
     private Long id;
-
-    @Column(name = "Order_Date", nullable = false)
     private LocalDate orderDate;
-
-    @Column(name = "Order_Num", nullable = false)
     private int orderNum;
-
-    @Column(name = "Amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "Customer_Name", length = 255, nullable = false)
     private String customerName;
-
-    @Column(name = "Customer_Address", length = 255, nullable = false)
     private String customerAddress;
-
-    @Column(name = "Customer_Email", length = 128, nullable = false)
     private String customerEmail;
-
-    @Column(name = "Customer_Phone", length = 128, nullable = false)
     private String customerPhone;
 
-    @Column(name = "Realized", length = 128, nullable = false)
     private Boolean realized;
+
+    private List<OrderDetailInfo> details;
+
+    public OrderInfo() {
+
+    }
+
+
+
+    // Using for Hibernate Query.
+    public OrderInfo(Long id, LocalDate orderDate, int orderNum, //
+                     BigDecimal amount, String customerName, String customerAddress, //
+                     String customerEmail, String customerPhone, Boolean realized) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.orderNum = orderNum;
+        this.amount = amount;
+
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerEmail = customerEmail;
+        this.customerPhone = customerPhone;
+        this.realized = realized;
+
+    }
 
     public Long getId() {
         return id;
@@ -105,6 +108,14 @@ public class Order implements Serializable {
         this.customerPhone = customerPhone;
     }
 
+    public List<OrderDetailInfo> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<OrderDetailInfo> details) {
+        this.details = details;
+    }
+
     public Boolean getRealized() {
         return realized;
     }
@@ -112,5 +123,5 @@ public class Order implements Serializable {
     public void setRealized(Boolean realized) {
         this.realized = realized;
     }
-
+ 
 }

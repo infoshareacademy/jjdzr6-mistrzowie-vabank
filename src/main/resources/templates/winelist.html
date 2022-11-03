@@ -7,18 +7,7 @@
 <body>
 <div th:replace="common/header :: navbar" |>
 </div>
-
-
-<button type="button" class="btn btn-danger">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"
-         viewBox="0 0 16 16">
-        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-    </svg>
-    test button
-</button>
-<div th:if="${#lists.isEmpty(winesjson)}">
-    <p>Przerwa techniczna</p>
-</div>
+<br><br><br><br><br><br>
 <table class="table">
     <thead>
     <tr>
@@ -26,17 +15,28 @@
         <th scope="col">Nazwa wina</th>
         <th scope="col">Smak</th>
         <th scope="col">Cena</th>
+        <th scope="col">Rok</th>
+        <th scope="col">Pochodzenie</th>
+        <th scope="col">Typ</th>
+        <th scope="col">Ilość</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <th th:if="${wine != null}">
-        <tr th:each="wine, iStat: ${winesjson}">
-            <th scope="row" th:text="${iStat.count}"></th>
-            <th scope="row" th:text="${wine.wineName}"></th>
-            <th scope="row" th:text="${wine.wineFlavour}"></th>
-            <th scope="row" th:text="${wine.winePrice}"></th>
-        </tr>
-    </th>
+    <tr th:each="wine : ${wines}">
+        <td th:text="${wine.id}"></td>
+        <td th:text="${wine.name}"></td>
+        <td th:text="${wine.flavour}"></td>
+        <td th:text="${wine.price}"></td>
+        <td th:text="${wine.year}"></td>
+        <td th:text="${wine.origin}"></td>
+        <td th:text="${wine.type}"></td>
+        <td th:text="${wine.quantity}"></td>
+        <td><a th:href="@{|/wine/${wine.id}|}" class="btn btn-link" ><button type="button" class="btn btn-warning">Details</button></a>
+        <a th:href="@{|/buyProduct?id=${wine.id}|}" class="btn btn-link" ><button type="button" class="btn btn-danger">Add to cart</button></a>
+        </td>
+    </tr>
     </tbody>
 </table>
 

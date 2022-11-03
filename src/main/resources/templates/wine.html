@@ -31,42 +31,34 @@
                 <!--Content-->
                 <div class="p-4">
 
-                    <div class="mb-3">
+<!--                    <div class="mb-3">-->
 
-                        <span class="badge rounded-pill badge-danger">Red wine</span>
-                        <span class="badge rounded-pill badge-dark">Primitivo</span>
-                        <span class="badge rounded-pill badge-success">New</span>
-                        <span class="badge rounded-pill badge-primary">Bestseller</span>
+<!--                        <span class="badge rounded-pill badge-danger">Red wine</span>-->
+<!--                        <span class="badge rounded-pill badge-dark">Primitivo</span>-->
+<!--                        <span class="badge rounded-pill badge-success">New</span>-->
+<!--                        <span class="badge rounded-pill badge-primary">Bestseller</span>-->
 
-                    </div>
+<!--                    </div>-->
 
-                    <p class="lead">
-            <span class="mr-1">
-              <del>$200</del>
-            </span>
-                        <span>$100</span>
-                    </p>
-
-                    <p class="lead font-weight-bold">Primitivo Luccarelli IGT Puglia</p>
-
-                    <p>The Primitivo Puglia from the wine-growing region of Puglia offers a dense colour in the glass.
-                        The first nose of the Primitivo Puglia reveals notes of fruit bread, dried fruit and prunes. The
-                        fruity aspects of the bouquet are joined by more fruity-balsamic nuances.
-
-                        This red from Luccarelli is ideal for all wine connoisseurs who like as little residual sugar as
-                        possible in their wine. At the same time, however, it never appears meager or brittle, which is
-                        absolutely not a matter of course for a wine in the entry-level range. Due to the moderate fruit
-                        acidity, the Primitivo flatters with a pleasing mouthfeel, without lacking juicy liveliness at
-                        the same time.</p>
-
-                    <form class="d-flex justify-content-left">
+                    <b><p th:text="${wine.name}"></p></b>
+                    <b><span th:text="${wine.price}"></span>$</b><br>
+                    <p><form class="d-flex justify-content-left">
                         <!-- Default input -->
                         <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-                        <button class="btn btn-danger btn-md my-0 p" type="submit">Add to cart
-                            <i class="fas fa-shopping-cart ml-1"></i>
-                        </button>
+                    <a th:href="@{|/buyProduct?id=${wine.id}|}" class="btn btn-link" ><button type="button" class="btn btn-danger">Add to cart</button></a>
+                    </form></p>
+                    <br>
+                    Year: <span th:text="${wine.year}"></span><br>
+                    Flavour: <span th:text="${wine.flavour}"></span><br>
+                    Type: <span th:text="${wine.type}"></span><br>
+                    Origin: <span th:text="${wine.origin}"></span><br>
+                    Quantity: <span th:text="${wine.quantity}"></span> pcs<br>
+                    Shipping: 24 hours<br><br><br><br>
+                    <p th:text="${wine.spec}"></p>
+                    <br><br>
 
-                    </form>
+
+
 
                 </div>
                 <!--Content-->
