@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"|>
+
+</head>
+
+<body>
+<div th:replace="common/header :: navbar"|>
+</div>
+<div class="container text-center">
+    <form class="formsignin" th:action="@{/api/sign-in}" method="post">-
+            <h1 class="h3 mb-3 mt-5 font-weight-normal">Please sign in</h1>
+            <div th:if="${param.error}" class="alert alert-danger">Invalid Username or Password</div>
+            <label for="username" class="sr-only">Email address</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+
+<!-- Bootstrap core JS-->
+</div>
+</body>
+<div th:replace="common/header :: footer"|>
+</div>
+</html>

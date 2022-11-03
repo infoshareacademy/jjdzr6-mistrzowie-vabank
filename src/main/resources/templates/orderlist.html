@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header" |>
+
+</head>
+
+<body>
+<div th:replace="common/header :: navbar" |>
+</div>
+<br><br><br><br><br><br>
+
+<h1>New orders</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Order number</th>
+        <th scope="col">Data zamówienia</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Akcje</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${order}" th:if="${order.realized == false}">
+        <td th:text="${order.orderNum}"></td>
+        <td th:text="${order.orderDate}"></td>
+        <td th:text="${order.amount} + '$'"></td>
+        <td><a th:href="@{|/order=${order.orderNum}|}" class="btn btn-link">
+            <button type="button" class="btn btn-info">Details</button>
+        </a>
+            <a th:href="@{|/removeOrder=${order.orderNum}|}" class="btn btn-link">
+                <button type="button" class="btn btn-warning">Delete order</button>
+            </a>
+            <a th:href="@{|/setrealized=${order.orderNum}|}" class="btn btn-link">
+                <button type="button" class="btn btn-danger">Set as realized</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<h1>Completed orders</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Order number</th>
+        <th scope="col">Data zamówienia</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${order}" th:if="${order.realized == true}">
+        <td th:text="${order.orderNum}"></td>
+        <td th:text="${order.orderDate}"></td>
+        <td th:text="${order.amount} + '$'"></td>
+    </tbody>
+</table>
+
+</body>
+<div th:replace="common/header :: footer" |>
+</div>
+</html>
