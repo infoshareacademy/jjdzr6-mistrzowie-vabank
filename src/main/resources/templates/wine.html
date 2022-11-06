@@ -20,7 +20,7 @@
 
 
                 <span th:if="${wine.image} != null"><img class="card-img-top" th:src="@{'/winelist/image/' + ${wine.id}}"></span>
-
+                <span th:if="${wine.image} == null"><img src="https://nowywilczak.pl/wp-content/uploads/2016/04/default-placeholder.png" height="550px" width="550px"></span>
 
             </div>
             <!--Grid column-->
