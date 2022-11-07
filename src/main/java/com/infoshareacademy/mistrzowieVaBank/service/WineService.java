@@ -31,7 +31,6 @@ public class WineService {
     @Transactional
     public WineDto find(Long id) {
         Optional<Wine> byId = wineRepository.findById(id);
-        log.info("test{}",id);
         return byId
                 .map(wineMapper::toDto)
                 .orElseThrow(() -> new IllegalStateException("Wine with id not found: " + id));
