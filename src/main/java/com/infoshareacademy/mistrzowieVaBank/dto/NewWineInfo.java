@@ -1,37 +1,44 @@
-package com.infoshareacademy.mistrzowieVaBank.entity;
+package com.infoshareacademy.mistrzowieVaBank.dto;
 
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Lob;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
-@Entity
-@Table(name = "wine")
 @NoArgsConstructor
-public class Wine {
+public class NewWineInfo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotBlank(message = "Name cannot be empty")
     @Column(unique = true)
     private String name;
+    @NotBlank(message = "Flavour cannot be empty")
     private String flavour;
+    @NotBlank(message = "Type cannot be empty")
     private String type;
+    @Max(value = 2022)
+    @NotNull
     private int year;
-    private String spec;
+    @NotBlank(message = "Origin cannot be empty")
     private String origin;
+    @Min(value = 1, message = "Price cannot be lower then 1")
+    @NotNull
     private BigDecimal price;
+    @Min(value = 1, message = "Quantity cannot be lower then 1")
+    @NotNull
     private int quantity;
+    @NotBlank(message = "Specification cannot be empty")
+    private String spec;
+
+    @Column(name = "file")
     @Lob
-    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
-    private byte[] image;
+    private byte[] file;
 
-    @Column(name = "Create_Date", nullable = false)
-    private LocalDate createDate;
-
-    public Wine(long id, String flavour, String name, String origin, BigDecimal price, String type, int year, int quantity, String spec, byte[] image) {
-        this.id = id;
+    public NewWineInfo(String name, String flavour, String type, int year, String origin, BigDecimal price, int quantity, String spec, byte[] file) {
         this.name = name;
         this.flavour = flavour;
         this.type = type;
@@ -40,32 +47,7 @@ public class Wine {
         this.price = price;
         this.quantity = quantity;
         this.spec = spec;
-        this.image = image;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
+        this.file = file;
     }
 
     public String getName() {
@@ -131,6 +113,19 @@ public class Wine {
     public void setSpec(String spec) {
         this.spec = spec;
     }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    @Override
+    public String toString() {
+        return "NewWineInfo{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
-
-

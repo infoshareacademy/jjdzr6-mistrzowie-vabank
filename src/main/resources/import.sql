@@ -35,11 +35,11 @@ CREATE TABLE wine (
                       type VARCHAR(255) NULL,
                       year INT NOT NULL,
                       origin VARCHAR(255) NULL,
-                      price DECIMAL NULL,
+                      price DECIMAL(50) NULL,
                       quantity INT NOT NULL,
                       spec VARCHAR(5000) NULL,
                       image BLOB NULL,
-                      create_date date NOT NULL,
+                      create_date date NULL,
                       CONSTRAINT pk_wine PRIMARY KEY (id)
 );
 

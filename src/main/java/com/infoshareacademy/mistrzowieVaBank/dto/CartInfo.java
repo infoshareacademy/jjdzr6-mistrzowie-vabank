@@ -10,12 +10,8 @@ public class CartInfo {
 
     private CustomerInfo customerInfo;
 
-
     private final List<CartLineInfo> cartLines = new ArrayList<CartLineInfo>();
 
-    public CartInfo() {
-
-    }
 
     public int getOrderNum() {
         return orderNum;
@@ -63,9 +59,6 @@ public class CartInfo {
         }
     }
 
-    public void validate() {
-
-    }
 
     public void updateProduct(Long id, int quantity) {
         CartLineInfo line = this.findLineById(id);
@@ -109,6 +102,7 @@ public class CartInfo {
         }
         return total;
     }
+
     //TODO nie działa, dlaczego?
     public void updateQuantity(CartInfo cartForm) {
         if (cartForm != null) {
@@ -119,5 +113,5 @@ public class CartInfo {
         }
 
     }
- 
+
 }

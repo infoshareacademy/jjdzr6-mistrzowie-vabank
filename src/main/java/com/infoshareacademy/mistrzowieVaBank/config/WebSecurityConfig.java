@@ -1,11 +1,8 @@
 package com.infoshareacademy.mistrzowieVaBank.config;
 
 
-import com.infoshareacademy.mistrzowieVaBank.MistrzowieVaBankApplication;
-import com.infoshareacademy.mistrzowieVaBank.service.UserDetailsServiceImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -74,8 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return transactionManager;
     }
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -83,19 +79,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return bCryptPasswordEncoder;
     }
 
-    @Autowired
+/*    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         // Setting Service to find User in the database.
         // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-	}
+    }
 
 
 }

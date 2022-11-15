@@ -7,7 +7,6 @@
 <body>
 <div th:replace="common/header :: navbar"|>
 </div>
-<br><br><br>
        
             
       <th:block th:if="${cartForm == null || cartForm.cartLines == null || cartForm.cartLines.empty}">
@@ -27,7 +26,8 @@
                <div class="product-preview-container"
                         th:each="cartLineInfo, varStatus : ${cartForm.cartLines}">
             <tr>
-              <td><img th:src="@{|/productImage?code=${cartLineInfo.wineInfo.id}|}" width="190px"></td>
+                <span th:if="${cartLineInfo.wineInfo.image} != null"><td><img th:src="@{'/winelist/image/' + ${cartLineInfo.wineInfo.id}}" width="190px"></td></span>
+                <span th:if="${cartLineInfo.wineInfo.image} == null"><td><img src="https://nowywilczak.pl/wp-content/uploads/2016/04/default-placeholder.png" width="190px"></td></span>
               <td>
                 <b style="color: #000;font-size:16px; font-weight: 600" th:utext="${cartLineInfo.wineInfo.name}"></b>
                 <p style="font-size: 14px;"><span th:utext="${cartLineInfo.wineInfo.spec}"></span><br>
@@ -51,7 +51,7 @@
             <tr >
               <td colspan="7" align="right">
               <input class="btn btn-dark" type="submit" value="Update Quantity" />
-              <a th:href="@{/winelist}" style="margin-left: 20px;">Continue Shopping</a>
+              <a th:href="@{/winelist/page/1}" style="margin-left: 20px;">Continue Shopping</a>
               <a th:href="@{/shoppingCartCustomer}">Checkout</a>
                
               </td>
