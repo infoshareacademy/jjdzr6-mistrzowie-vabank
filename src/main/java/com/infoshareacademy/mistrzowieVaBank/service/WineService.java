@@ -23,7 +23,7 @@ public class WineService {
     }
 
     @Transactional
-    public void create(NewWineInfo newWineInfo) {
+    public void createWine(NewWineInfo newWineInfo) {
         Wine wine = wineMapper.toEntity(newWineInfo);
         wineRepository.save(wine);
     }

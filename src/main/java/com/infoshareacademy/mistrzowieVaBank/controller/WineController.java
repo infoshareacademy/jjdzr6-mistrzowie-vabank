@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @Transactional
-public class WineListController {
+public class WineController {
 
     private final WineListService wineListService;
 
@@ -26,7 +26,7 @@ public class WineListController {
 
     private static final int pageSize = 10;
 
-    public WineListController(WineListService wineListService, WineDao wineDao) {
+    public WineController(WineListService wineListService, WineDao wineDao) {
         this.wineListService = wineListService;
         this.wineDao = wineDao;
     }

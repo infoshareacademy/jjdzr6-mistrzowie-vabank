@@ -10,7 +10,6 @@ import java.util.List;
 public interface WineRepository extends JpaRepository<Wine, Long> {
     List<Wine> findWineByName(String name);
 
-
     @Query("select a from Wine a where a.name = :name")
     Wine findExistByName(String name);
 

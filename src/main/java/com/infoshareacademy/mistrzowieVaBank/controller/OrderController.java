@@ -2,16 +2,13 @@ package com.infoshareacademy.mistrzowieVaBank.controller;
 
 import com.infoshareacademy.mistrzowieVaBank.dao.OrderDao;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
-@Transactional
 public class OrderController {
-
-
     private final OrderDao orderDAO;
 
     public OrderController(OrderDao orderDAO) {

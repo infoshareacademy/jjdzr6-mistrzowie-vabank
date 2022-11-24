@@ -6,6 +6,7 @@ import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineInfo;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
 import com.infoshareacademy.mistrzowieVaBank.service.WineListService;
+import com.infoshareacademy.mistrzowieVaBank.service.WineService;
 import com.infoshareacademy.mistrzowieVaBank.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +28,12 @@ public class ProductController {
 
     private final WineListService wineListService;
 
-    public ProductController(WineDao wineDao, WineListService wineListService) {
+    private final WineService wineService;
+
+    public ProductController(WineDao wineDao, WineListService wineListService, WineService wineService) {
         this.wineDao = wineDao;
         this.wineListService = wineListService;
+        this.wineService = wineService;
     }
 
     @RequestMapping({"/buyProduct"})
@@ -96,7 +100,7 @@ public class ProductController {
                 if (multipartFile != null) {
                     newWineInfo.setFile(multipartFile.getBytes());
                 }
-                wineDao.saveNewWine(newWineInfo);
+                wineService.createWine(newWineInfo);
                 return "redirect:/winelist/page/1";
             }
 

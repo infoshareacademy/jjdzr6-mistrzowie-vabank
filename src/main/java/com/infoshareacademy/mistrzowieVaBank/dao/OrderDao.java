@@ -5,10 +5,10 @@ import com.infoshareacademy.mistrzowieVaBank.dto.*;
 import com.infoshareacademy.mistrzowieVaBank.entity.Order;
 import com.infoshareacademy.mistrzowieVaBank.entity.OrderDetail;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
+import com.infoshareacademy.mistrzowieVaBank.repository.OrderDetailRepository;
 import com.infoshareacademy.mistrzowieVaBank.repository.OrderRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
+import com.infoshareacademy.mistrzowieVaBank.service.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,21 +26,27 @@ import java.util.UUID;
 public class OrderDao {
 
     @Autowired
-    private SessionFactory sessionFactory;
-
-    @Autowired
     private OrderRepository orderRepository;
     @Autowired
     private WineDao wineDao;
+
+    @Autowired
+    private WineRepository wineRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     private int getMaxOrderNum() {
         String sql = "Select max(o.orderNum) from " + Order.class.getName() + " o ";
-        Session session = this.sessionFactory.getCurrentSession();
-        Query<Integer> query = session.createQuery(sql, Integer.class);
-        Integer value = (Integer) query.getSingleResult();
+        TypedQuery<Integer> query1 = entityManager.createQuery(sql, Integer.class);
+
+        Integer value = (Integer) query1.getSingleResult();
         if (value == null) {
             return 0;
         }
@@ -51,7 +55,7 @@ public class OrderDao {
 
     @Transactional
     public void saveOrder(CartInfo cartInfo) {
-        Session session = this.sessionFactory.getCurrentSession();
+
 
         int orderNum = this.getMaxOrderNum() + 1;
         Order order = new Order();
@@ -68,7 +72,7 @@ public class OrderDao {
         order.setCustomerPhone(customerInfo.getPhone());
         order.setCustomerAddress(customerInfo.getAddress());
 
-        session.persist(order);
+        orderRepository.save(order);
 
         List<CartLineInfo> lines = cartInfo.getCartLines();
 
@@ -81,22 +85,20 @@ public class OrderDao {
             detail.setQuantity(line.getQuantity());
 
             Long id = line.getWineInfo().getId();
-            Wine wine = this.wineDao.findWine(id);
+            Wine wine = wineRepository.findById(id).orElse(null);
             detail.setWine(wine);
 
-            session.persist(detail);
+            orderDetailRepository.save(detail);
         }
 
         // Order Number!
         cartInfo.setOrderNum(orderNum);
-        // Flush
-        session.flush();
+
     }
 
 
-    public Order findOrder(int orderId) {
-        Session session = this.sessionFactory.getCurrentSession();
-        return session.find(Order.class, orderId);
+    public Order findOrder(long orderId) {
+        return orderRepository.findById(orderId).orElse(null);
     }
 
 
@@ -111,27 +113,17 @@ public class OrderDao {
     }
 
     public List<OrderDetailInfo> listOrderDetailInfos(Long orderId) {
-        String sql = "Select new " + OrderDetailInfo.class.getName() //
-                + "(d.id, d.wine.id, d.wine.name , d.quantity,d.price,d.amount) "//
-                + " from " + OrderDetail.class.getName() + " d "//
-                + " where d.order.id = :orderId ";
-
-        Session session = this.sessionFactory.getCurrentSession();
-        Query<OrderDetailInfo> query = session.createQuery(sql, OrderDetailInfo.class);
-        query.setParameter("orderId", orderId);
-
-        return query.getResultList();
+        List<OrderDetail> orderDetail = orderDetailRepository.findByOrderId(orderId);
+        List<OrderDetailInfo> orderDetailList = new ArrayList<>();
+        for (OrderDetail detail : orderDetail) {
+            OrderDetailInfo orderDetailInfo = orderMapper.toEntity(detail);
+            orderDetailList.add(orderDetailInfo);
+        }
+        return orderDetailList;
     }
 
     public List<Order> getAllOrders() {
-        Session session = this.sessionFactory.getCurrentSession();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Order> cq = cb.createQuery(Order.class);
-        Root<Order> rootEntry = cq.from(Order.class);
-        CriteriaQuery<Order> all = cq.select(rootEntry);
-
-        TypedQuery<Order> allQuery = session.createQuery(all);
-        return allQuery.getResultList();
+        return orderRepository.findAll();
     }
 
     public void deleteOrderByOrderNum(int orderNum) {
@@ -143,8 +135,7 @@ public class OrderDao {
     }
 
     public List<Order> findAllByOrderNum(int orderNum) {
-        List<Order> orders = orderRepository.findAllByOrderNum(orderNum);
-        return orders;
+        return orderRepository.findAllByOrderNum(orderNum);
     }
 
 }
