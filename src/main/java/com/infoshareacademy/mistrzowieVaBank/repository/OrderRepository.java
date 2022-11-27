@@ -17,7 +17,14 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("update Order set realized = 1 where orderNum= :orderNum")
     void setOrderAsRealized(int orderNum);
 
+    @Modifying
+    //@Query("select max(o.orderNum) from " + Order.class.getName() + " o ")
+    @Query("select max (o) from Order o where o.orderNum = :orderNum")
+    void findMaxOrderNum();
+
+
     List<Order> findAllByOrderNum(int order);
+
 
 }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class OrderController {
+
     private final OrderDao orderDAO;
 
     public OrderController(OrderDao orderDAO) {
@@ -38,5 +39,4 @@ public class OrderController {
         model.addAttribute("order", orderDAO.findAllByOrderNum(orderNum));
         return "order";
     }
-
 }

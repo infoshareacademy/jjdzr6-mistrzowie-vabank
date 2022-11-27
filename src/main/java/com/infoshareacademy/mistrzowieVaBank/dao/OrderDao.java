@@ -21,32 +21,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Transactional
 @Repository
 public class OrderDao {
 
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private WineDao wineDao;
+    private final OrderRepository orderRepository;
 
-    @Autowired
-    private WineRepository wineRepository;
+    private final WineRepository wineRepository;
 
-    @Autowired
-    private OrderDetailRepository orderDetailRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
-    @Autowired
-    private OrderMapper orderMapper;
+    private final OrderMapper orderMapper;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+
+    public OrderDao(OrderRepository orderRepository, WineRepository wineRepository, OrderDetailRepository orderDetailRepository, OrderMapper orderMapper) {
+        this.orderRepository = orderRepository;
+        this.wineRepository = wineRepository;
+        this.orderDetailRepository = orderDetailRepository;
+        this.orderMapper = orderMapper;
+    }
 
     private int getMaxOrderNum() {
         String sql = "Select max(o.orderNum) from " + Order.class.getName() + " o ";
-        TypedQuery<Integer> query1 = entityManager.createQuery(sql, Integer.class);
+       TypedQuery<Integer> query1 = entityManager.createQuery(sql, Integer.class);
 
-        Integer value = (Integer) query1.getSingleResult();
+
+        Integer value = query1.getSingleResult();
         if (value == null) {
             return 0;
         }
