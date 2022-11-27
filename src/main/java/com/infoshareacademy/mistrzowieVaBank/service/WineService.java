@@ -3,7 +3,7 @@ package com.infoshareacademy.mistrzowieVaBank.service;
 import com.infoshareacademy.mistrzowieVaBank.dto.NewWineInfo;
 import com.infoshareacademy.mistrzowieVaBank.dto.WineDto;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
-import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
+import com.infoshareacademy.mistrzowieVaBank.repositor.WineRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.mapper.WineMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

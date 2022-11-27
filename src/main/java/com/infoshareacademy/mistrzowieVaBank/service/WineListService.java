@@ -1,7 +1,7 @@
 package com.infoshareacademy.mistrzowieVaBank.service;
 
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
-import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
+import com.infoshareacademy.mistrzowieVaBank.repositor.WineRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @NoArgsConstructor

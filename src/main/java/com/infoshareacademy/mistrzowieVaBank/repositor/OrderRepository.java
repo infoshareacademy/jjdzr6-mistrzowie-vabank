@@ -1,9 +1,10 @@
-package com.infoshareacademy.mistrzowieVaBank.repository;
+package com.infoshareacademy.mistrzowieVaBank.repositor;
 
 import com.infoshareacademy.mistrzowieVaBank.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,7 +22,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     //@Query("select max(o.orderNum) from " + Order.class.getName() + " o ")
     @Query("select max (o) from Order o where o.orderNum = :orderNum")
     void findMaxOrderNum();
-
 
     List<Order> findAllByOrderNum(int order);
 

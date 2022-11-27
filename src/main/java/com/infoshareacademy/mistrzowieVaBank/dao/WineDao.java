@@ -1,17 +1,13 @@
 package com.infoshareacademy.mistrzowieVaBank.dao;
 
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
-import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 
 @Transactional
 @Repository

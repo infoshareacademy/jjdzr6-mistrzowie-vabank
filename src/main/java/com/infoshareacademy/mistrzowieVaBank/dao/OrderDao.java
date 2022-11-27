@@ -5,23 +5,27 @@ import com.infoshareacademy.mistrzowieVaBank.dto.*;
 import com.infoshareacademy.mistrzowieVaBank.entity.Order;
 import com.infoshareacademy.mistrzowieVaBank.entity.OrderDetail;
 import com.infoshareacademy.mistrzowieVaBank.entity.Wine;
-import com.infoshareacademy.mistrzowieVaBank.repository.OrderDetailRepository;
-import com.infoshareacademy.mistrzowieVaBank.repository.OrderRepository;
-import com.infoshareacademy.mistrzowieVaBank.repository.WineRepository;
+import com.infoshareacademy.mistrzowieVaBank.repositor.OrderDetailRepository;
+import com.infoshareacademy.mistrzowieVaBank.repositor.OrderRepository;
+import com.infoshareacademy.mistrzowieVaBank.repositor.WineRepository;
 import com.infoshareacademy.mistrzowieVaBank.service.mapper.OrderMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+@Component
+@RequiredArgsConstructor
+@Transactional
 public class OrderDao {
 
     private final OrderRepository orderRepository;
@@ -32,15 +36,17 @@ public class OrderDao {
 
     private final OrderMapper orderMapper;
 
+    private final EntityManager entityManager;
 
-    public OrderDao(OrderRepository orderRepository, WineRepository wineRepository, OrderDetailRepository orderDetailRepository, OrderMapper orderMapper) {
-        this.orderRepository = orderRepository;
-        this.wineRepository = wineRepository;
-        this.orderDetailRepository = orderDetailRepository;
-        this.orderMapper = orderMapper;
+    @Bean(name="entityManagerFactory")
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+
+        return sessionFactory;
     }
 
-    private int getMaxOrderNum() {
+
+    public int getMaxOrderNum() {
         String sql = "Select max(o.orderNum) from " + Order.class.getName() + " o ";
        TypedQuery<Integer> query1 = entityManager.createQuery(sql, Integer.class);
 
